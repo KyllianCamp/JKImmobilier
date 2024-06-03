@@ -31,6 +31,10 @@ public class Properties {
     @JoinColumn(name = "idRent")
     private Financial.Rent rent;
 
+    @OneToMany
+    @JoinColumn(name = "idOwner")
+    private Persons.OwnerProperty ownerProperty;
+
     public Properties(String creationDate, Double surface, Integer nbRooms) {
         this.creationDate = creationDate;
         this.surface = surface;
