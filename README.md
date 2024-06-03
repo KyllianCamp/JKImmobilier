@@ -1,3 +1,7 @@
+Importer la base de données sur un serveur MySQL
+    JKimmobilier.sql
+
+
 //TODO : 
 
 ----- Gestion des utilisateurs -----
