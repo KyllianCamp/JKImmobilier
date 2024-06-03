@@ -1,13 +1,14 @@
 package Location;
 
 import java.util.List;
+import Persist.*;
 
 import Finance.Paiement;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "location")
-public class Location {
+public class Location extends Persist{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -34,4 +35,17 @@ public class Location {
 
     @OneToOne(mappedBy = "location", cascade = CascadeType.ALL)
     private Preavis preavis;
+
+    public Location() {
+    }
+
+    public Location(String dateDebut, String dateFin, String commentaire, Utilisateur locataire, Bien bien) {
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.commentaire = commentaire;
+        this.locataire = locataire;
+        this.bien = bien;
+
+        create(this);
+    }
 }

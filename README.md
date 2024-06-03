@@ -5,17 +5,17 @@ Importer la base de données sur un serveur MySQL
 //TODO : 
 
 ----- Gestion des utilisateurs -----
-- [ ] Créer un utilisateur
-- [ ] Modifier un utilisateur
-- [ ] Supprimer un utilisateur
+- [x] Créer un utilisateur
+- [x] Modifier un utilisateur
+- [x] Supprimer un utilisateur
 - [ ] Lister les utilisateurs
 - [ ] Rechercher un utilisateur
 - [ ] Lister les utilisateurs d'un rôle
 
 ----- Gestion des biens -----
-- [ ] Créer un bien
-- [ ] Modifier un bien
-- [ ] Supprimer un bien
+- [x] Créer un bien
+- [x] Modifier un bien
+- [x] Supprimer un bien
 - [ ] Lister les biens
 - [ ] Rechercher un bien
 - [ ] Lister les biens d'un propriétaire
