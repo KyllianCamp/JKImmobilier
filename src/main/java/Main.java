@@ -9,26 +9,12 @@ import jakarta.persistence.Persistence;
 public class Main {
     public static void main(String[] args) {
         
-        java.util.logging.Logger.getLogger("org.hibernate").setLevel(java.util.logging.Level.SEVERE);
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(java.util.logging.Level.OFF);
 
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
-
-        System.out.println("Hello World");
-        try {
-            transaction.begin();
-            Rent rent = entityManager.find(Rent.class, 1);
-            System.out.println("test: " + rent.toString());
-            transaction.commit();
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            entityManager.getTransaction().rollback();
-        }
-
-        finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        Tiers test = new Tiers("Doe", "John", "2000-01-01", "test@gmail.com", "0600000000", "123456789", "FR123456789", "FR123456789");
+        System.out.println("test: " + test.toString());
+        test.setLastname("update");
+        System.out.println(test.read().toString());
+        test.delete();
     }
 }
