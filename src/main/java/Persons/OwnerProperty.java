@@ -10,13 +10,13 @@ public class OwnerProperty {
     @Column(name = "idLink", nullable = false)
     private Integer idOwnerProperty;
 
-    @ManyToOne
-    @JoinColumn(name = "idOwner")
-    private Tiers owner;
+    // @ManyToOne
+    // @JoinColumn(name = "idOwner")
+    // private Tiers owner;
 
-    @ManyToOne
-    @JoinColumn(name = "idProperty")
-    private Properties.Properties property;
+    // @ManyToOne
+    // @JoinColumn(name = "idProperty")
+    // private Properties.Properties property;
 
     @Column(name = "current")
     private Boolean current;

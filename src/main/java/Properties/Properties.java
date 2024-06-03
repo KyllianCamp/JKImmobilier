@@ -23,17 +23,17 @@ public class Properties {
     @JoinColumn(name = "idAddress")
     private Adresses address;
 
-    @OneToMany
-    @JoinColumn(name = "idRoom")
-    private Rooms room;
+    // @OneToMany
+    // @JoinColumn(name = "idRoom")
+    // private Rooms room;
 
-    @OneToMany
-    @JoinColumn(name = "idRent")
-    private Financial.Rent rent;
+    // @OneToMany
+    // @JoinColumn(name = "idRent")
+    // private Financial.Rent rent;
 
-    @OneToMany
-    @JoinColumn(name = "idOwner")
-    private Persons.OwnerProperty ownerProperty;
+    // @OneToMany
+    // @JoinColumn(name = "idOwner")
+    // private Persons.OwnerProperty ownerProperty;
 
     public Properties(String creationDate, Double surface, Integer nbRooms) {
         this.creationDate = creationDate;

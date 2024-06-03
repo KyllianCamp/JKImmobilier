@@ -10,17 +10,17 @@ public class Inventory {
     @Column(name = "idInventory", nullable = false)
     private Integer idInventory;
 
-    @ManyToOne
-    @JoinColumn(name = "idLease")
-    private Lease lease;
+    // @ManyToOne
+    // @JoinColumn(name = "idLease")
+    // private Lease lease;
 
-    @OneToMany
-    @JoinColumn(name = "idInventory")
-    private StateElement stateElement;
+    // @OneToMany
+    // @JoinColumn(name = "idInventory")
+    // private StateElement stateElement;
 
-    @OneToMany
-    @JoinColumn(name = "idInventory")
-    private StateRoom stateRoom;
+    // @OneToMany
+    // @JoinColumn(name = "idInventory")
+    // private StateRoom stateRoom;
 
     public Inventory() {
     }

@@ -16,9 +16,9 @@ public class WallElements {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "idElement")
-    private Elements element;
+    // @ManyToOne
+    // @JoinColumn(name = "idElement")
+    // private Elements element;
 
     public WallElements() {
     }

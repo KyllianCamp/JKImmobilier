@@ -29,21 +29,21 @@ public class Rooms {
     @Column(name = "nbDoors")
     private Integer nbDoors;
 
-    @ManyToOne
-    @JoinColumn(name = "idProperty")
-    private Properties property;
+    // @ManyToOne
+    // @JoinColumn(name = "idProperty")
+    // private Properties property;
 
-    @OneToMany
-    @JoinColumn(name = "idElement")
-    private Elements element;
+    // @OneToMany
+    // @JoinColumn(name = "idElement")
+    // private Elements element;
 
-    @OneToMany
-    @JoinColumn(name = "idFurniture")
-    private Furnitures furniture;
+    // @OneToMany
+    // @JoinColumn(name = "idFurniture")
+    // private Furnitures furniture;
 
-    @OneToMany
-    @JoinColumn(name = "idStateRoom")
-    private StateRoom stateRoom;
+    // @OneToMany
+    // @JoinColumn(name = "idStateRoom")
+    // private StateRoom stateRoom;
 
     public Rooms() {
     }

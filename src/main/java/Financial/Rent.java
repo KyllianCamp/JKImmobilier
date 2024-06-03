@@ -22,15 +22,15 @@ public class Rent {
     @Column(name = "dateFor")
     private String dateFor;
 
-    @ManyToOne
-    @JoinColumn(name = "idProperty")
-    private Properties.Properties property;
+    // @ManyToOne
+    // @JoinColumn(name = "idProperty")
+    // private Properties.Properties property;
 
-    @OneToMany
-    @JoinColumn(name = "idBurden")
-    private Burden burden;
+    // @OneToMany
+    // @JoinColumn(name = "idBurden")
+    // private Burden burden;
 
-    @OneToMany
-    @JoinColumn(name = "idPayment")
-    private Payment payment;
+    // @OneToMany
+    // @JoinColumn(name = "idPayment")
+    // private Payment payment;
 }

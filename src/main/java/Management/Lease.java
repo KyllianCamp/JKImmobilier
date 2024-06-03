@@ -16,13 +16,13 @@ public class Lease {
     @Column(name = "numLease")
     private Integer numLease;
 
-    @ManyToOne
-    @JoinColumn(name = "idAgent")
-    private Persons.Tiers agent;
+    // @ManyToOne
+    // @JoinColumn(name = "idAgent")
+    // private Persons.Tiers agent;
 
-    @OneToMany
-    @JoinColumn(name = "idLease")
-    private Inventory inventory;
+    // @OneToMany
+    // @JoinColumn(name = "idLease")
+    // private Inventory inventory;
 
     public Lease() {
     }

@@ -33,17 +33,17 @@ public class Elements {
     @Column(name = "nbHeaters")
     private Integer nbHeaters;
 
-    @ManyToOne
-    @JoinColumn(name = "idRoom")
-    private Rooms room;
+    // @ManyToOne
+    // @JoinColumn(name = "idRoom")
+    // private Rooms room;
 
-    @OneToMany
-    @JoinColumn(name = "idWallElement")
-    private WallElements wallElement;
+    // @OneToMany
+    // @JoinColumn(name = "idWallElement")
+    // private WallElements wallElement;
 
-    @OneToMany
-    @JoinColumn(name = "idStateElement")
-    private StateElement stateElement;
+    // @OneToMany
+    // @JoinColumn(name = "idStateElement")
+    // private StateElement stateElement;
 
     public Elements() {
     }
