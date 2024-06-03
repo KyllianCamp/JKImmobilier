@@ -19,10 +19,15 @@ public class Burden {
     @Column(name = "description")
     private String description;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idRent")
-    // private Rent rent;
+    @ManyToOne
+    @JoinColumn(name = "idRent")
+    private Rent rent;
 
     public Burden() {
+    }
+
+    @Override
+    public String toString() {
+        return "Burden [idBurden=" + idBurden + ", amount=" + amount + ", type=" + type + ", description=" + description + "]";
     }
 }

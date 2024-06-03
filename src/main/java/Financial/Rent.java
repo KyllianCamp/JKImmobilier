@@ -1,5 +1,7 @@
 package Financial;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -26,11 +28,17 @@ public class Rent {
     // @JoinColumn(name = "idProperty")
     // private Properties.Properties property;
 
-    // @OneToMany
-    // @JoinColumn(name = "idBurden")
-    // private Burden burden;
+    @OneToMany(mappedBy = "rent", cascade = CascadeType.ALL)
+    private List<Burden> burden;
 
     // @OneToMany
     // @JoinColumn(name = "idPayment")
     // private Payment payment;
+
+    @Override
+    public String toString() {
+        return "Rent [idRent=" + idRent + ", amount=" + amount + ", burdenIncluded=" + burdenIncluded + ", date=" + date
+                + ", dateFor=" + dateFor + ", burden=" + burden + "]";
+    }
+
 }
