@@ -42,6 +42,10 @@ public class Tiers {
     @JoinColumn(name = "idOwner")
     private OwnerProperty ownerProperty;
 
+    @OneToMany
+    @JoinColumn(name = "idAgent")
+    private Management.Lease lease;
+
     public Tiers(String lastname, String firstname, String dateOfBirth, String mail, String phone, String rib, String iban, String bic) {
         this.lastname = lastname;
         this.firstname = firstname;

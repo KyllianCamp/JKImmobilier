@@ -1,6 +1,7 @@
 package Properties;
 
 
+import Management.StateRoom;
 import Properties.Elements.Elements;
 import Properties.Elements.Furnitures;
 import jakarta.persistence.*;
@@ -39,6 +40,10 @@ public class Rooms {
     @OneToMany
     @JoinColumn(name = "idFurniture")
     private Furnitures furniture;
+
+    @OneToMany
+    @JoinColumn(name = "idStateRoom")
+    private StateRoom stateRoom;
 
     public Rooms() {
     }

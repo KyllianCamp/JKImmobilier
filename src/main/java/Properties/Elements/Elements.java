@@ -1,5 +1,6 @@
 package Properties.Elements;
 
+import Management.StateElement;
 import Properties.Rooms;
 import jakarta.persistence.*;
 
@@ -39,6 +40,10 @@ public class Elements {
     @OneToMany
     @JoinColumn(name = "idWallElement")
     private WallElements wallElement;
+
+    @OneToMany
+    @JoinColumn(name = "idStateElement")
+    private StateElement stateElement;
 
     public Elements() {
     }
