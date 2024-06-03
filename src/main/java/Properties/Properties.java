@@ -27,6 +27,10 @@ public class Properties {
     @JoinColumn(name = "idRoom")
     private Rooms room;
 
+    @OneToMany
+    @JoinColumn(name = "idRent")
+    private Financial.Rent rent;
+
     public Properties(String creationDate, Double surface, Integer nbRooms) {
         this.creationDate = creationDate;
         this.surface = surface;

@@ -34,6 +34,10 @@ public class Tiers {
     @Column(name = "bic")
     private String bic;
 
+    @OneToMany
+    @JoinColumn(name = "idPayment")
+    private Financial.Payment payment;
+
     public Tiers(String lastname, String firstname, String dateOfBirth, String mail, String phone, String rib, String iban, String bic) {
         this.lastname = lastname;
         this.firstname = firstname;
