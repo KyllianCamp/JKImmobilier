@@ -27,10 +27,3 @@
 - [ ] Lister les locations d'un locataire
 - [ ] Lister les locations d'un bien
 
------ Gestion des inventaires -----
-- [ ] Créer un inventaire
-- [ ] Modifier un inventaire
-- [ ] Supprimer un inventaire
-- [ ] Lister les inventaires
-- [ ] Rechercher un inventaire
-- [ ] Lister les inventaires d'un bien

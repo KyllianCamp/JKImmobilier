@@ -23,11 +23,11 @@ public class Payment {
     @Column(name = "rib")
     private String rib;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idRent")
-    // private Rent rent;
+    @ManyToOne
+    @JoinColumn(name = "idRent")
+    private Rent rent;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idTiers")
-    // private Tiers tiers;
+    @ManyToOne
+    @JoinColumn(name = "idTiers")
+    private Tiers tiers;
 }

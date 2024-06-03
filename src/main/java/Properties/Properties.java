@@ -1,5 +1,10 @@
 package Properties;
 
+import java.util.List;
+
+import Financial.Payment;
+import Financial.Rent;
+import Persons.OwnerProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,17 +28,14 @@ public class Properties {
     @JoinColumn(name = "idAddress")
     private Adresses address;
 
-    // @OneToMany
-    // @JoinColumn(name = "idRoom")
-    // private Rooms room;
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    private List<Rooms> room;
 
-    // @OneToMany
-    // @JoinColumn(name = "idRent")
-    // private Financial.Rent rent;
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    private List<Rent> rent;
 
-    // @OneToMany
-    // @JoinColumn(name = "idOwner")
-    // private Persons.OwnerProperty ownerProperty;
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    private List<OwnerProperty> ownerProperty;
 
     public Properties(String creationDate, Double surface, Integer nbRooms) {
         this.creationDate = creationDate;

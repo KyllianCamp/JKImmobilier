@@ -1,5 +1,7 @@
 package Management;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,17 +12,15 @@ public class Inventory {
     @Column(name = "idInventory", nullable = false)
     private Integer idInventory;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idLease")
-    // private Lease lease;
+    @ManyToOne
+    @JoinColumn(name = "idLease")
+    private Lease lease;
 
-    // @OneToMany
-    // @JoinColumn(name = "idInventory")
-    // private StateElement stateElement;
+    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
+    private List<StateElement> stateElement;
 
-    // @OneToMany
-    // @JoinColumn(name = "idInventory")
-    // private StateRoom stateRoom;
+    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
+    private List<StateRoom> stateRoom;
 
     public Inventory() {
     }

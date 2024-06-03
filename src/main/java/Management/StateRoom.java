@@ -20,13 +20,13 @@ public class StateRoom {
     @Column(name = "description")
     private String description;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idInventory")
-    // private Inventory inventory;
+    @ManyToOne
+    @JoinColumn(name = "idInventory")
+    private Inventory inventory;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idRoom")
-    // private Rooms room;
+    @ManyToOne
+    @JoinColumn(name = "idRoom")
+    private Rooms room;
 
     public StateRoom() {
     }

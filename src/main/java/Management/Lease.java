@@ -1,5 +1,7 @@
 package Management;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -16,13 +18,12 @@ public class Lease {
     @Column(name = "numLease")
     private Integer numLease;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idAgent")
-    // private Persons.Tiers agent;
+    @ManyToOne
+    @JoinColumn(name = "idAgent", referencedColumnName = "idTiers")
+    private Persons.Tiers agent;
 
-    // @OneToMany
-    // @JoinColumn(name = "idLease")
-    // private Inventory inventory;
+    @OneToMany(mappedBy = "lease", cascade = CascadeType.ALL)
+    private List<Inventory> inventory;
 
     public Lease() {
     }

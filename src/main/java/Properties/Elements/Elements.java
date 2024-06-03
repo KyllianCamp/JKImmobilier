@@ -1,5 +1,7 @@
 package Properties.Elements;
 
+import java.util.List;
+
 import Management.StateElement;
 import Properties.Rooms;
 import jakarta.persistence.*;
@@ -33,17 +35,15 @@ public class Elements {
     @Column(name = "nbHeaters")
     private Integer nbHeaters;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idRoom")
-    // private Rooms room;
+    @ManyToOne
+    @JoinColumn(name = "idRoom")
+    private Rooms room;
 
-    // @OneToMany
-    // @JoinColumn(name = "idWallElement")
-    // private WallElements wallElement;
+    @OneToMany(mappedBy = "element", cascade = CascadeType.ALL)
+    private List<WallElements> wallElement;
 
-    // @OneToMany
-    // @JoinColumn(name = "idStateElement")
-    // private StateElement stateElement;
+    @OneToMany(mappedBy = "element", cascade = CascadeType.ALL)
+    private List<StateElement> stateElement;
 
     public Elements() {
     }

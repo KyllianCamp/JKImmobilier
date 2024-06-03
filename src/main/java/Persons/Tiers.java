@@ -1,5 +1,9 @@
 package Persons;
 
+import java.util.List;
+
+import Financial.Payment;
+import Management.Lease;
 import jakarta.persistence.*;
 
 @Entity
@@ -34,17 +38,14 @@ public class Tiers {
     @Column(name = "bic")
     private String bic;
 
-    // @OneToMany
-    // @JoinColumn(name = "idPayment")
-    // private Financial.Payment payment;
+    @OneToMany(mappedBy = "tiers", cascade = CascadeType.ALL)
+    private List<Payment> payment;
 
-    // @OneToMany
-    // @JoinColumn(name = "idOwner")
-    // private OwnerProperty ownerProperty;
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<OwnerProperty> ownerProperty;
 
-    // @OneToMany
-    // @JoinColumn(name = "idAgent")
-    // private Management.Lease lease;
+    @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL)
+    private List<Lease> lease;
 
     public Tiers(String lastname, String firstname, String dateOfBirth, String mail, String phone, String rib, String iban, String bic) {
         this.lastname = lastname;
@@ -58,6 +59,5 @@ public class Tiers {
     }
 
     public Tiers() {
-
     }
 }

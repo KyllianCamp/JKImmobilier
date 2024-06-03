@@ -1,6 +1,8 @@
 package Properties;
 
 
+import java.util.List;
+
 import Management.StateRoom;
 import Properties.Elements.Elements;
 import Properties.Elements.Furnitures;
@@ -29,21 +31,18 @@ public class Rooms {
     @Column(name = "nbDoors")
     private Integer nbDoors;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idProperty")
-    // private Properties property;
+    @ManyToOne
+    @JoinColumn(name = "idProperty")
+    private Properties property;
 
-    // @OneToMany
-    // @JoinColumn(name = "idElement")
-    // private Elements element;
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<Elements> element;
 
-    // @OneToMany
-    // @JoinColumn(name = "idFurniture")
-    // private Furnitures furniture;
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<Furnitures> furniture;
 
-    // @OneToMany
-    // @JoinColumn(name = "idStateRoom")
-    // private StateRoom stateRoom;
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<StateRoom> stateRoom;
 
     public Rooms() {
     }

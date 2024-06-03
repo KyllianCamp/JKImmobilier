@@ -17,9 +17,9 @@ public class Furnitures {
     @Column(name = "description")
     private String description;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idRoom")
-    // private Rooms room;
+    @ManyToOne
+    @JoinColumn(name = "idRoom")
+    private Rooms room;
 
     public Furnitures() {
     }

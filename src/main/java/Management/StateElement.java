@@ -20,13 +20,13 @@ public class StateElement {
     @Column(name = "description")
     private String description;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idInventory")
-    // private Inventory inventory;
+    @ManyToOne
+    @JoinColumn(name = "idInventory")
+    private Inventory inventory;
 
-    // @ManyToOne
-    // @JoinColumn(name = "idElement")
-    // private Elements element;
+    @ManyToOne
+    @JoinColumn(name = "idElement")
+    private Elements element;
 
     public StateElement() {
     }
