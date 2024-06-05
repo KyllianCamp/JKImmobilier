@@ -1,6 +1,9 @@
 package Location;
 
 import java.util.List;
+
+import com.mysql.cj.util.Util;
+
 import Persist.*;
 
 import jakarta.persistence.*;
@@ -83,6 +86,14 @@ public class Utilisateur extends Persist {
 
     public void delete() {
         delete(this);
+    }
+
+    public Utilisateur getUtilisateurById(int id) {
+        return (Utilisateur) read(Utilisateur.class, id);
+    }
+
+    public List<Utilisateur> getUtilisateurs() {
+        return (List<Utilisateur>) (Utilisateur.class);
     }
 
 
