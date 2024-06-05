@@ -91,10 +91,4 @@ public class Utilisateur extends Persist {
     public Utilisateur getUtilisateurById(int id) {
         return (Utilisateur) read(Utilisateur.class, id);
     }
-
-    public List<Utilisateur> getUtilisateurs() {
-        return (List<Utilisateur>) (Utilisateur.class);
-    }
-
-
 }
