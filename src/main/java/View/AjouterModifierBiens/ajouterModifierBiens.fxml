@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="594.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AjouterModifierBiens.ajouterBiensController">
+<VBox prefHeight="594.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AjouterModifierBiens.AjouterBiensController">
   <children>
     <AnchorPane fx:id="layout" maxHeight="-1.0" maxWidth="-1.0" prefHeight="589.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>
@@ -47,8 +47,8 @@
               </items>
             </MenuButton>
             <Label layoutX="34.0" layoutY="452.0" text="Ajouter une photographie : " />
-            <Button layoutX="128.0" layoutY="529.0" mnemonicParsing="false" text="Sauvegarder" />
-            <Button layoutX="341.0" layoutY="529.0" mnemonicParsing="false" text="Annuler" />
+            <Button layoutX="128.0" layoutY="529.0" mnemonicParsing="false" text="Sauvegarder" onAction="#clickOnSaveButton" />
+            <Button layoutX="341.0" layoutY="529.0" mnemonicParsing="false" text="Annuler" onAction="#clickOnStopButton"/>
       </children>
     </AnchorPane>
       <VBox />

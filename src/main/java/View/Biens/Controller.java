@@ -11,6 +11,7 @@ import Component.CadreBien.BiensController;
 import Location.Bien;
 import Location.Utilisateur;
 import Persist.jdbcDataAccess;
+import View.AjouterModifierBiens.AjouterBiensController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,10 +81,18 @@ public class Controller implements Initializable{
 
     @FXML
     public void goToAjouterBiens(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../AjouterModifierBiens/ajouterModifierBiens.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterModifierBiens/ajouterModifierBiens.fxml"));
+            root = loader.load();
+            AjouterBiensController controller = loader.getController();
+            
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
