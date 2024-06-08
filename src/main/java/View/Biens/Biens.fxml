@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Biens.Controller">
+<VBox prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Biens.Controller">
   <children>
     <MenuBar VBox.vgrow="ALWAYS">
       <menus>
-        <Menu mnemonicParsing="false" text="Gestion des biens">
+        <Menu mnemonicParsing="false" text="Gestion des biens" id="selected">
           <items>
-            <MenuItem mnemonicParsing="false" text="Accueil" />
-                  <MenuItem mnemonicParsing="false" text="Ajouter un bien" />
+            <MenuItem mnemonicParsing="false" text="Accueil" id="selected"/>
+            <MenuItem mnemonicParsing="false" text="Ajouter un bien" onAction="#goToAjouterBiens" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Gestion des locations">
@@ -34,18 +33,13 @@
           </items>
         </Menu>
       </menus>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
     </MenuBar>
-    <AnchorPane fx:id="layout" maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>
-        <Button mnemonicParsing="false" onAction="#onBtnClick" text="Ajouter un nouveau bien" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+        <Button mnemonicParsing="false" onAction="#goToAjouterBiens" text="Ajouter un nouveau bien" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
         <TextField layoutX="14.0" layoutY="15.0" promptText="Rechercher" AnchorPane.leftAnchor="15.0" />
-        <ListView fx:id="listView" layoutX="15.2" layoutY="78.4" prefHeight="322.0" prefWidth="571.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
-            <Accordion layoutX="154.0" layoutY="243.0" />
+        <HBox fx:id="dynamicContainer" id="dynamicContainer" spacing="10.0" AnchorPane.topAnchor="60.0" AnchorPane.leftAnchor="15.0"/>
       </children>
     </AnchorPane>
-      <VBox />
   </children>
 </VBox>

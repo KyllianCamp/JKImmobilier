@@ -1,0 +1,13 @@
+#layout {
+    -fx-spacing: 10;
+}
+
+.button {
+    -fx-background-color: rgba(151, 71, 255, 1); /* Example of styling buttons */
+    -fx-text-fill: #ffffff;
+}
+
+#selected {
+    -fx-text-fill: rgba(151, 71, 255, 1);
+}
+

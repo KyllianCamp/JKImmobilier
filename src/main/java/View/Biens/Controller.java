@@ -34,18 +34,16 @@ public class Controller implements Initializable{
     private Parent root;
 
     @FXML
-    private AnchorPane layout;
+    private TextField textField;
 
     @FXML
-    private TextField textField;
+    private HBox dynamicContainer;
 
     // @FXML
     // private TextField numberField;
 
     // @FXML
     // private TextField numberFieldSurface;
-
-    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,7 +61,7 @@ public class Controller implements Initializable{
                 BiensController controller = loader.getController();
                 controller.setData(bien);
                 component.getStylesheets().add(getClass().getResource("../../Component/CadreBien/styles.css").toExternalForm());
-                layout.getChildren().add(component);
+                dynamicContainer.getChildren().add(component);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -81,8 +79,11 @@ public class Controller implements Initializable{
     }
 
     @FXML
-    public void onBtnClick(ActionEvent event) throws IOException {
-        System.out.println(textField.getText());
+    public void goToAjouterBiens(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../AjouterModifierBiens/ajouterModifierBiens.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-
 }
