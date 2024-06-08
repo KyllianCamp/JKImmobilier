@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -33,6 +34,14 @@ public class Controller implements Initializable{
     @FXML
     private ListView<String> listView;
 
+    @FXML
+    private TextField numberField;
+
+    @FXML
+    private TextField numberFieldSurface;
+
+    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Utilisateur utilisateur = new Utilisateur();
@@ -41,7 +50,18 @@ public class Controller implements Initializable{
         for (int i = 0; i < 1; i++) {
             list.add(utilisateur2.getNom());
         }
+        numberField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                numberField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        numberFieldSurface.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[\\d,\\.]*")) {
+                numberFieldSurface.setText(newValue.replaceAll("[^\\d,\\.]", ""));
+            }
+        });
         System.out.println(list);
+        
     }
 
     @FXML
