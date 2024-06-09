@@ -22,7 +22,6 @@ public class AjouterBiensController implements Initializable{
     private Scene scene;
     private Parent root;
 
-
     @FXML
     private AnchorPane layout;
 
@@ -37,7 +36,16 @@ public class AjouterBiensController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("AjouterModifierBiens");
+        numberField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                numberField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+        numberFieldSurface.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[\\d,\\.]*")) {
+                numberFieldSurface.setText(newValue.replaceAll("[^\\d,\\.]", ""));
+            }
+        });
     }
 
     @FXML

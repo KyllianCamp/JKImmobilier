@@ -67,16 +67,6 @@ public class Controller implements Initializable{
                 e.printStackTrace();
             }
         }
-        // numberField.textProperty().addListener((observable, oldValue, newValue) -> {
-        //     if (!newValue.matches("\\d*")) {
-        //         numberField.setText(newValue.replaceAll("[^\\d]", ""));
-        //     }
-        // });
-        // numberFieldSurface.textProperty().addListener((observable, oldValue, newValue) -> {
-        //     if (!newValue.matches("[\\d,\\.]*")) {
-        //         numberFieldSurface.setText(newValue.replaceAll("[^\\d,\\.]", ""));
-        //     }
-        // });
     }
 
     @FXML
