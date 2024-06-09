@@ -1,6 +1,9 @@
 package Location;
 
 import java.util.List;
+
+import com.mysql.cj.util.Util;
+
 import Persist.*;
 
 import jakarta.persistence.*;
@@ -45,6 +48,18 @@ public class Utilisateur extends Persist {
         create(this);
     }
 
+    public Utilisateur(int id, String nom, String prenom, String mail, String telephone) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.telephone = telephone;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -85,5 +100,12 @@ public class Utilisateur extends Persist {
         delete(this);
     }
 
+    @Override
+    public String toString() {
+        return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", telephone=" + telephone + "]";
+    }
 
+    public Utilisateur getUtilisateurById(int id) {
+        return (Utilisateur) read(Utilisateur.class, id);
+    }
 }
