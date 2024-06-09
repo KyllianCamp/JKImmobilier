@@ -8,11 +8,13 @@ import java.util.List;
 import Location.Bien;
 import Location.Utilisateur;
 
+import io.github.cdimascio.dotenv.*;
+
 public class jdbcDataAccess {
     private static Connection connection;
-    private static final String URL = "jdbc:mysql://localhost:8889/JKimmobilier";
-    private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String URL = Dotenv.load().get("BDD_URL") ;
+    private static final String USER = Dotenv.load().get("BDD_USER");
+    private static final String PASSWORD = Dotenv.load().get("BDD_PASSWD");
 
     public Connection jdbcDataAccess() throws SQLException, SQLException {
         connection = (Connection) DriverManager.getConnection(URL, USER, PASSWORD);
