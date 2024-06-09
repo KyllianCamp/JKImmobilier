@@ -19,6 +19,13 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>dotenv</artifactId>
+            <version>16.3.1</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx</artifactId>
             <version>23-ea+20</version>

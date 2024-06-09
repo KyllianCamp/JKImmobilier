@@ -10,30 +10,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Biens.Controller">
+<VBox prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Biens.Controller" fx:id="layout" id="layout">
   <children>
-    <MenuBar VBox.vgrow="ALWAYS">
-      <menus>
-        <Menu mnemonicParsing="false" text="Gestion des biens" id="selected">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Accueil" id="selected"/>
-            <MenuItem mnemonicParsing="false" text="Ajouter un bien" onAction="#goToAjouterBiens" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Gestion des locations">
-          <items>
-                  <MenuItem mnemonicParsing="false" text="Accueil" />
-            <MenuItem mnemonicParsing="false" text="Ajouter une location" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Gestion des utilisateurs">
-          <items>
-                  <MenuItem mnemonicParsing="false" text="Accueil" />
-            <MenuItem mnemonicParsing="false" text="Ajouter un utilisateur" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>
         <Button mnemonicParsing="false" onAction="#goToAjouterBiens" text="Ajouter un nouveau bien" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />

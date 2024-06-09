@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import Component.CadreBien.BiensController;
+import Component.Header.HeaderController;
 import Location.Bien;
 import Location.Utilisateur;
 import Persist.jdbcDataAccess;
@@ -25,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -40,6 +42,9 @@ public class Controller implements Initializable{
     @FXML
     private HBox dynamicContainer;
 
+    @FXML
+    private VBox layout;
+
     // @FXML
     // private TextField numberField;
 
@@ -48,6 +53,14 @@ public class Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/Header/Header.fxml"));
+        try {
+            Parent component = loader.load();
+            HeaderController controller = loader.getController();
+            layout.getChildren().add(0, component);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         jdbcDataAccess jdbcDataAccess = new jdbcDataAccess();
         List<Bien> biens = new ArrayList<Bien>();
         try {
@@ -56,7 +69,7 @@ public class Controller implements Initializable{
             e.printStackTrace();
         }
         for (Bien bien : biens) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/CadreBien/CadreBien.fxml"));
+            loader = new FXMLLoader(getClass().getResource("../../Component/CadreBien/CadreBien.fxml"));
             try {
                 Parent component = loader.load();
                 BiensController controller = loader.getController();
@@ -72,7 +85,7 @@ public class Controller implements Initializable{
     @FXML
     public void goToAjouterBiens(ActionEvent event) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../AjouterModifierBiens/ajouterModifierBiens.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterModifierBiens/ajouterModifierBiens.fxml"));
             root = loader.load();
             AjouterBiensController controller = loader.getController();
             
