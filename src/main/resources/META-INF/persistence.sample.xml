@@ -5,10 +5,10 @@
              version="3.0">
     <persistence-unit name="default">
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://${BDD_HOST}/${BDD_NAME}"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:8889/JKimmobilier"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.connection.username" value="${BDD_USER}"/>
-            <property name="hibernate.connection.password" value="${BDD_PASSWD}"/>
+            <property name="hibernate.connection.username" value=""/>
+            <property name="hibernate.connection.password" value=""/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
