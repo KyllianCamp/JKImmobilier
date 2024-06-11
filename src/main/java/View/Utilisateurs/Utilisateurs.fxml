@@ -14,7 +14,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>
-        <Button mnemonicParsing="false" text="Ajouter un nouvel utilisateur" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+        <Button mnemonicParsing="false" onAction="#goToAjouterUser" text="Ajouter un nouvel utilisateur" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
         <TextField layoutX="14.0" layoutY="15.0" promptText="Rechercher" AnchorPane.leftAnchor="15.0" />
         <HBox fx:id="dynamicContainer" id="dynamicContainer" spacing="10.0" AnchorPane.topAnchor="60.0" AnchorPane.leftAnchor="15.0"/>
       </children>

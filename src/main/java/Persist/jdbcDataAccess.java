@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import Location.Bien;
+import Location.Location;
 import Location.Utilisateur;
 
 import io.github.cdimascio.dotenv.*;
@@ -63,6 +64,28 @@ public class jdbcDataAccess {
                 }
             }
             return biens;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public List<Location> getLocations() throws SQLException {
+        try {
+            String sql = "SELECT * FROM location";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            List<Location> locations = new ArrayList<>();
+            Location location = new Location();
+            if (resultSet == null) {
+                System.out.println("Aucune location trouvée");
+            } else {
+                while (resultSet.next()) {
+                    locations.add(location.getLocationById(resultSet.getInt("id")));
+                }
+            }
+            return locations;
         } catch (Exception e) {
             System.out.println("Erreur : " + e);
         }

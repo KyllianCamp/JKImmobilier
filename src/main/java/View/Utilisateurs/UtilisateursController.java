@@ -13,20 +13,45 @@ import Component.Header.HeaderController;
 import Location.Bien;
 import Location.Utilisateur;
 import Persist.jdbcDataAccess;
+import View.AjouterModifierBiens.AjouterBiensController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class UtilisateursController implements Initializable{
+public class UtilisateursController implements Initializable {
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
     private VBox layout;
 
     @FXML
     private HBox dynamicContainer;
+
+    @FXML
+    public void goToAjouterUser(ActionEvent event) throws IOException {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterModifierBiens/ajouterModifierBiens.fxml"));
+            root = loader.load();
+            
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

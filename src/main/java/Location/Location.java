@@ -30,7 +30,7 @@ public class Location extends Persist{
     @JoinColumn(name = "idBien", referencedColumnName = "id")
     private Bien bien;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Paiement> paiements;
 
     @OneToOne(mappedBy = "location", cascade = CascadeType.ALL)
@@ -48,4 +48,45 @@ public class Location extends Persist{
 
         create(this);
     }
+
+    public Location getLocationById(int id) {
+        return (Location) read(this, id);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDateDebut() {
+        return dateDebut;
+    }
+
+    public String getDateFin() {
+        return dateFin;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public Utilisateur getLocataire() {
+        return locataire;
+    }
+
+    public Bien getBien() {
+        return bien;
+    }
+
+    public List<Paiement> getPaiements() {
+        return paiements;
+    }
+
+    @Override
+    public String toString() {
+        return "Location [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", commentaire="
+                + commentaire + ", locataire=" + locataire + ", bien=" + bien + ", paiements=" + paiements
+                + ", preavis=" + preavis + "]";
+    }
+    
+    
 }
