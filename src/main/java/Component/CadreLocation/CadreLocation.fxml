@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" stylesheets="@styles.css" fx:controller="Component.CadreLocation.CadreLocationController" id="background">
+    <AnchorPane layoutY="60.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+        <children>
+           <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#c8d2dc" height="250.0" layoutX="95.2" stroke="BLACK" strokeType="INSIDE" width="526.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+           <Label text="Nom du logement" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="10.0" />
+           <Label text="Position" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0" />
+           <Label text="Paiement : " AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="70.0" />
+           <Label text="Effectués" textFill="#12b127" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="70.0" />
+           <Label text="Paiements manquants" textFill="RED" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="70.0" />
+           <Label text="Contact du propriétaire : " AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="115.0" />
+           <Label text="Contact du locataire : " AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="150.0" />
+           <Button mnemonicParsing="false" text="Télécharger la facture du mois en cours" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="195.0" />
+           <Button mnemonicParsing="false" text="Modifier" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="195.0" />
+           <Label text="Prix au mois" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" />
+        </children>
+     </AnchorPane>
+</VBox>

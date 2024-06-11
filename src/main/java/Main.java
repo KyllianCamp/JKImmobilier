@@ -17,7 +17,6 @@ public class Main extends Application{
         Utilisateur utilisateur = new Utilisateur();
         Utilisateur utilisateur2 = utilisateur.getUtilisateurById(1);
 
-
         launch(args);
     }
 
