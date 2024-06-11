@@ -96,6 +96,15 @@ public class Utilisateur extends Persist {
         update(this);
     }
 
+    public void updateAll(int id, String nom, String prenom, String mail, String telephone) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.telephone = telephone;
+        update(this);
+    }
+
     public void delete() {
         delete(this);
     }

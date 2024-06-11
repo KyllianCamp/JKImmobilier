@@ -1,15 +1,27 @@
 package Component.CadreBien;
 
 import java.io.File;
+import java.io.IOException;
 
 import Location.Bien;
+import View.AjouterModifierBiens.AjouterBiensController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class BiensController {
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     @FXML
     private ImageView imageView;
     @FXML
@@ -43,13 +55,31 @@ public class BiensController {
     }
 
     private void modifyBien(Bien bien) {
-        // Logique pour modifier le bien
-        System.out.println("Modifier le bien : " + bien.getId());
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterModifierBiens/ajouterModifierBiens.fxml"));
+            root = loader.load();
+            AjouterBiensController controller = loader.getController();
+            controller.setData(bien);
+            stage = (Stage) modifyButton.getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteBien(Bien bien) {
-        // Logique pour supprimer le bien
-        System.out.println("Supprimer le bien : " + bien.getId());
+        try {
+            root = FXMLLoader.load(getClass().getResource("../../View/Biens/Biens.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        bien.delete();
+        stage = (Stage) deleteButton.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

@@ -1,0 +1,61 @@
+package View.Utilisateurs;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import Component.CadreBien.BiensController;
+import Component.CadreUtilisateurs.CadreUtilisateursController;
+import Component.Header.HeaderController;
+import Location.Bien;
+import Location.Utilisateur;
+import Persist.jdbcDataAccess;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+public class UtilisateursController implements Initializable{
+
+    @FXML
+    private VBox layout;
+
+    @FXML
+    private HBox dynamicContainer;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/Header/Header.fxml"));
+        try {
+            Parent component = loader.load();
+            HeaderController controller = loader.getController();
+            layout.getChildren().add(0, component);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        jdbcDataAccess jdbcDataAccess = new jdbcDataAccess();
+        List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+        try {
+            utilisateurs = jdbcDataAccess.getTiers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Utilisateur utilisateur : utilisateurs) {
+            loader = new FXMLLoader(getClass().getResource("../../Component/CadreUtilisateurs/CadreUtilisateurs.fxml"));
+            Utilisateur newUtilisateur = utilisateur.getUtilisateurById(utilisateur.getId());
+            try {
+                Parent component = loader.load();
+                CadreUtilisateursController controller = loader.getController();
+                controller.setData(newUtilisateur);
+                dynamicContainer.getChildren().add(component);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

@@ -27,8 +27,8 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Gestion des utilisateurs">
             <items>
-                    <MenuItem mnemonicParsing="false" text="Accueil" />
-              <MenuItem mnemonicParsing="false" text="Ajouter un utilisateur" />
+                    <MenuItem mnemonicParsing="false" text="Accueil" onAction="#goToUtilisateurs"/>
+              <MenuItem mnemonicParsing="false" text="Ajouter un utilisateur" onAction="#goToAjouterUsers" />
             </items>
           </Menu>
         </menus>

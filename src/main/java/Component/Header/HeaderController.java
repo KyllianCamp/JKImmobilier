@@ -1,12 +1,9 @@
 package Component.Header;
 
 import java.io.IOException;
-
-import View.AjouterModifierBiens.AjouterBiensController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
@@ -67,6 +64,36 @@ public class HeaderController {
     public void goToDemandeLocation(ActionEvent event) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/DemandeLocations/DemandeLocations.fxml"));
+            root = loader.load();
+            scene = new Scene(root);
+            stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goToUtilisateurs(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/Utilisateurs/Utilisateurs.fxml"));
+            root = loader.load();
+            scene = new Scene(root);
+            stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void goToAjouterUsers(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterUsers/AjouterModifierUsers.fxml"));
             root = loader.load();
             scene = new Scene(root);
             stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();

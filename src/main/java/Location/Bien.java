@@ -157,8 +157,38 @@ public class Bien extends Persist{
         update(this);
     }
 
+    public Bien getBienById(int id) {
+        return (Bien) read(Bien.class, id);
+    }
+
+    public Utilisateur getProprietaire() {
+        return proprietaire;
+    }
+
+    public void updateAll(int id, String nom, String adresse, String codePostal, int nbPieces, int surface, String description, int loyer, String type, Utilisateur proprietaire) {
+        this.id = id;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.codePostal = codePostal;
+        this.nbPieces = nbPieces;
+        this.surface = surface;
+        this.description = description;
+        this.loyer = loyer;
+        this.type = type;
+        this.proprietaire = proprietaire;
+        update(this);
+    }
+
     public void delete() {
         delete(this);
     }
+
+    @Override
+    public String toString() {
+        return "Bien [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", codePostal=" + codePostal + ", nbPieces="
+                + nbPieces + ", surface=" + surface + ", description=" + description + ", loyer=" + loyer + ", type="
+                + type + ", proprietaire=" + proprietaire + "]";
+    }
+    
     
 }

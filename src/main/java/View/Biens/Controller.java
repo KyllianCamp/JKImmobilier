@@ -70,10 +70,11 @@ public class Controller implements Initializable{
         }
         for (Bien bien : biens) {
             loader = new FXMLLoader(getClass().getResource("../../Component/CadreBien/CadreBien.fxml"));
+            Bien newBien = bien.getBienById(bien.getId());
             try {
                 Parent component = loader.load();
                 BiensController controller = loader.getController();
-                controller.setData(bien);
+                controller.setData(newBien);
                 component.getStylesheets().add(getClass().getResource("../../Component/CadreBien/styles.css").toExternalForm());
                 dynamicContainer.getChildren().add(component);
             } catch (IOException e) {
