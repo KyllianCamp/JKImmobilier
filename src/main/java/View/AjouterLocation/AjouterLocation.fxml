@@ -30,7 +30,7 @@
             <TextField layoutX="160.0" layoutY="110.0" promptText="Date Début" fx:id="dateDebut"/>
             <TextField layoutX="160.0" layoutY="140.0" promptText="Date fin" fx:id="dateFin" />
             <TextField layoutX="160.0" layoutY="170.0" promptText="Commentaire" fx:id="commentaire" />
-            <Button layoutX="40.0" layoutY="200.0" mnemonicParsing="false" text="Sauvegarder" />
+            <Button layoutX="40.0" layoutY="200.0" mnemonicParsing="false" text="Sauvegarder" onAction="#ajouterLocation" />
             <Button layoutX="260.0" layoutY="200.0" mnemonicParsing="false" text="Annuler" onAction="#goToLocation"/>
       </children>
     </AnchorPane>

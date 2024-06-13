@@ -81,7 +81,7 @@ public class AjouterLocationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {   
-            biens = jdbcDataAccess.getBiens();
+            biens = jdbcDataAccess.getBienWithoutLocation();
         } catch (SQLException e) {
             e.printStackTrace();
         }

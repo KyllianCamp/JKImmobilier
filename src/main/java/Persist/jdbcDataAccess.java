@@ -70,6 +70,35 @@ public class jdbcDataAccess {
         return null;
     }
 
+    public List<Bien> getBienWithoutLocation() throws SQLException {
+        try {
+            String sql = "SELECT b.*, l.*\n" + //
+                                "FROM Bien b\n" + //
+                                "LEFT JOIN Location l ON b.id = l.idBien\n" + //
+                                "WHERE l.id IS NULL \n" + //
+                                "   OR (l.dateFin IS NOT NULL AND l.dateFin != \"\" AND l.dateFin < CURRENT_DATE);";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            List<Bien> biens = new ArrayList<>();
+            if (resultSet == null) {
+                System.out.println("Aucun bien trouvé");
+            } else {
+                while (resultSet.next()) {
+                    Bien bien = new Bien(resultSet.getInt("id"), resultSet.getString("nom"),
+                            resultSet.getString("adresse"), resultSet.getString("codePostal") , resultSet.getInt("nbPieces"),
+                            resultSet.getInt("surface"), resultSet.getString("description"), resultSet.getInt("loyer"), 
+                            resultSet.getString("type"));
+                    biens.add(bien);
+                }
+            }
+            return biens;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
     public List<Location> getLocations() throws SQLException {
         try {
             String sql = "SELECT * FROM location";
