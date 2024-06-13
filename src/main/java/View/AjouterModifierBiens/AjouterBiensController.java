@@ -87,7 +87,6 @@ public class AjouterBiensController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
         try {
             utilisateurs = jdbcDataAccess.getTiers();
         } catch (SQLException e) {

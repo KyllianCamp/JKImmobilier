@@ -63,7 +63,7 @@ public class HeaderController {
     @FXML
     public void goToDemandeLocation(ActionEvent event) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/DemandeLocations/DemandeLocations.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterLocation/AjouterLocation.fxml"));
             root = loader.load();
             scene = new Scene(root);
             stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
