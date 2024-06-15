@@ -29,13 +29,12 @@ public class jdbcDataAccess {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             List<Utilisateur> utilisateurs = new ArrayList<>();
+            Utilisateur utilisateur = new Utilisateur();
             if (resultSet == null) {
                 System.out.println("Aucun utilisateur trouvé");
             } else {
                 while (resultSet.next()) {
-                    Utilisateur utilisateur = new Utilisateur(resultSet.getInt("id"), resultSet.getString("nom"),
-                            resultSet.getString("prenom"), resultSet.getString("mail"), resultSet.getString("telephone"));
-                    utilisateurs.add(utilisateur);
+                    utilisateurs.add(utilisateur.getUtilisateurById(resultSet.getInt("id")));
                 }
             }
             return utilisateurs;
