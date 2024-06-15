@@ -81,6 +81,17 @@ public class Location extends Persist{
         return paiements;
     }
 
+    public void updateAll (int id, String dateDebut, String dateFin, String commentaire, Utilisateur locataire, Bien bien) {
+        this.id = id;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.commentaire = commentaire;
+        this.locataire = locataire;
+        this.bien = bien;
+
+        update(this);
+    }
+
     @Override
     public String toString() {
         return "Location [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", commentaire="

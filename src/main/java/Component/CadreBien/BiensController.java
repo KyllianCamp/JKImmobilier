@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class BiensController {
@@ -36,6 +37,8 @@ public class BiensController {
     private Button modifyButton;
     @FXML
     private Button deleteButton;
+    @FXML
+    private VBox background;
 
     public void setData(Bien bien) {
         String localImagePath = "/Users/kyllian/Pictures/24h du Mans/DSC06545.JPG";
@@ -52,6 +55,7 @@ public class BiensController {
         // Ajouter les actions des boutons
         modifyButton.setOnAction(e -> modifyBien(bien));
         deleteButton.setOnAction(e -> deleteBien(bien));
+        background.setOnMouseClicked(e -> showBien(bien));
     }
 
     private void modifyBien(Bien bien) {
@@ -80,6 +84,10 @@ public class BiensController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void showBien(Bien bien) {
+        System.out.println(bien.getNom());
     }
 }
 

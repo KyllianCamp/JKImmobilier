@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import Location.Bien;
 import Location.Location;
+import Location.Utilisateur;
 import Persist.jdbcDataAccess;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,6 +32,9 @@ public class AjouterLocationController implements Initializable {
     jdbcDataAccess jdbcDataAccess = new jdbcDataAccess();
 
     private int idBien;
+    private int idLocataire;
+
+    private Location locationToModify;
 
     @FXML
     public Boolean isAjouter = true;
@@ -66,7 +70,15 @@ public class AjouterLocationController implements Initializable {
             if (isAjouter) {
                 Location location = new Location(dateDebut.getText(), dateFin.getText(), commentaire.getText(), null);
             } else {
-                // Location location = new Location(dateDebut.getText(), dateFin.getText(), commentaire.getText(), null);
+                Location location = new Location();
+                Utilisateur locataire = new Utilisateur();
+                if (idLocataire != 0) {
+                    locataire = locataire.getUtilisateurById(idLocataire);
+                } else {
+                    locataire = null;
+                }
+                Bien bien = locationToModify.getBien();
+                location.updateAll(locationToModify.getId(), dateDebut.getText(), dateFin.getText(), commentaire.getText(), locataire, bien.getBienById(idBien));
             }
             root = FXMLLoader.load(getClass().getResource("../Location/Locations.fxml"));
             stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -75,6 +87,21 @@ public class AjouterLocationController implements Initializable {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setData(Location location) {
+        locationToModify = location;
+        isAjouter = false;
+        dateDebut.setText(location.getDateDebut());
+        dateFin.setText(location.getDateFin());
+        commentaire.setText(location.getCommentaire());
+        menuButton.setText(location.getBien().getNom());
+        idBien = location.getBien().getId();
+        if (location.getLocataire() != null) {
+            idLocataire = location.getLocataire().getId();
+        } else {
+            idLocataire = 0;
         }
     }
 

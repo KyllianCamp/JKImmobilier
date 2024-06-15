@@ -16,7 +16,7 @@
            <Label text="Contact du propriétaire : " AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="115.0" fx:id="proprietaire"/>
            <Label text="Contact du locataire : " AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="150.0" fx:id="locataire"/>
            <Button mnemonicParsing="false" text="Télécharger la facture du mois en cours" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="195.0" />
-           <Button mnemonicParsing="false" text="Modifier" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="195.0" />
+           <Button mnemonicParsing="false" text="Modifier" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="195.0" fx:id="modifyButton"/>
            <Label text="Prix au mois" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" fx:id="prix" />
         </children>
      </AnchorPane>
