@@ -7,6 +7,7 @@ import java.util.List;
 
 import Location.Bien;
 import Location.Caracteristique;
+import Location.Dossier;
 import Location.Location;
 import Location.Utilisateur;
 
@@ -121,6 +122,28 @@ public class jdbcDataAccess {
         return null;
     }
 
+    public Location getLastLocationOfBien(int idBien) throws SQLException {
+        try {
+            String sql = "SELECT * FROM location WHERE idBien = ? ORDER BY dateDebut DESC LIMIT 1";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, idBien);
+            ResultSet resultSet = statement.executeQuery();
+            Location location = new Location();
+            if (resultSet == null) {
+                System.out.println("Aucune location trouvée");
+            } else {
+                while (resultSet.next()) {
+                    location = location.getLocationById(resultSet.getInt("id"));
+                }
+            }
+            return location;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
     public List<Caracteristique> getCaracteristiques() throws SQLException {
         try {
             String sql = "SELECT * FROM caracteristique";
@@ -137,6 +160,51 @@ public class jdbcDataAccess {
                 }
             }
             return caracteristiques;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public List<Dossier> getDossiers() throws SQLException {
+        try {
+            String sql = "SELECT * FROM dossier";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            List<Dossier> dossiers = new ArrayList<>();
+            Dossier dossier = new Dossier();
+            if (resultSet == null) {
+                System.out.println("Aucun dossier trouvé");
+            } else {
+                while (resultSet.next()) {
+                    dossiers.add(dossier.getDossierById(resultSet.getInt("id")));
+                }
+            }
+            return dossiers;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public List<Dossier> getDossiersOfBien(int idBien) throws SQLException {
+        try {
+            String sql = "SELECT * FROM dossier WHERE idBien = ?";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, idBien);
+            ResultSet resultSet = statement.executeQuery();
+            List<Dossier> dossiers = new ArrayList<>();
+            Dossier dossier = new Dossier();
+            if (resultSet == null) {
+                System.out.println("Aucun dossier trouvé");
+            } else {
+                while (resultSet.next()) {
+                    dossiers.add(dossier.getDossierById(resultSet.getInt("id")));
+                }
+            }
+            return dossiers;
         } catch (Exception e) {
             System.out.println("Erreur : " + e);
         }

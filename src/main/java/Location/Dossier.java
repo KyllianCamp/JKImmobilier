@@ -36,4 +36,35 @@ public class Dossier extends Persist {
         create(this);
     }
 
+    public Dossier getDossierById(int id) {
+        return (Dossier) read(Dossier.class, id);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDateSoumission() {
+        return dateSoumission;
+    }
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public Utilisateur getCandidat() {
+        return candidat;
+    }
+
+    public Bien getBien() {
+        return bien;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+        update(this);
+    }
+
+    
+
 }

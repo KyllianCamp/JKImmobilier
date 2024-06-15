@@ -104,4 +104,18 @@ public class HeaderController {
             e.printStackTrace();
         }
     }
+    @FXML 
+    public void goToDossiers(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/Dossier/Dossier.fxml"));
+            root = loader.load();
+            scene = new Scene(root);
+            stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -45,12 +45,6 @@ public class Controller implements Initializable{
     @FXML
     private VBox layout;
 
-    // @FXML
-    // private TextField numberField;
-
-    // @FXML
-    // private TextField numberFieldSurface;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/Header/Header.fxml"));
