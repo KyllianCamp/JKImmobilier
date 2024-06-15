@@ -43,7 +43,7 @@ public class Bien extends Persist{
     @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)
     private List<Location> locations;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CaracteristiqueBien> caracteristiqueBiens;
 
     @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)

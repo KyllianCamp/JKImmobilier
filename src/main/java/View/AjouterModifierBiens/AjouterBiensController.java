@@ -3,11 +3,14 @@ package View.AjouterModifierBiens;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import Component.Header.HeaderController;
 import Location.Bien;
+import Location.Caracteristique;
+import Location.CaracteristiqueBien;
 import Location.Utilisateur;
 import Persist.jdbcDataAccess;
 import javafx.event.ActionEvent;
@@ -18,11 +21,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -37,6 +42,8 @@ public class AjouterBiensController implements Initializable{
     private int idProprietaire;
 
     List<Utilisateur> utilisateurs;
+    List<Integer> idCaracteristiques = new ArrayList<>();
+    List<Caracteristique> caracteristiques;
 
     @FXML
     private int idBien;
@@ -77,6 +84,12 @@ public class AjouterBiensController implements Initializable{
     @FXML
     private TextField type;
 
+    @FXML
+    private HBox listCaracteristiques;
+
+    @FXML
+    private TextField newCaracteristique;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/Header/Header.fxml"));
@@ -104,6 +117,35 @@ public class AjouterBiensController implements Initializable{
             menuButton.getItems().add(menuItem);
         }
 
+        try {
+            caracteristiques = jdbcDataAccess.getCaracteristiques();
+            for (Caracteristique caracteristique : caracteristiques) {
+                Button button = new Button(caracteristique.getNom());
+                button.setStyle("-fx-background-color: lightgrey");
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (idCaracteristiques.contains(caracteristique.getId())) {
+                            idCaracteristiques.remove((Integer) caracteristique.getId());
+                            button.setStyle("-fx-background-color: lightgrey");
+                            return;
+                        } else {
+                            idCaracteristiques.add(caracteristique.getId());
+                            button.setStyle("-fx-background-color: rgba(151, 71, 255, 1)");
+                        }
+                    }
+                });
+                listCaracteristiques.getChildren().add(button);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        loyer.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                loyer.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
         nbPiece.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 nbPiece.setText(newValue.replaceAll("[^\\d]", ""));
@@ -131,10 +173,17 @@ public class AjouterBiensController implements Initializable{
                 type.getText(),
                 proprietaire.getUtilisateurById(idProprietaire)
             );
+            for (int idCaracteristique : idCaracteristiques) {
+                CaracteristiqueBien caracteristiqueBien = new CaracteristiqueBien(new Caracteristique().getCaracteristiqueById(idCaracteristique), bien);
+            }
         } else {
             Utilisateur proprietaire = new Utilisateur();
             Bien bien = new Bien();
             bien.updateAll(idBien, title.getText(), adresse.getText(), codePostal.getText(), Integer.parseInt(nbPiece.getText()), Integer.parseInt(surface.getText()), description.getText(), Integer.parseInt(loyer.getText()), type.getText(), proprietaire.getUtilisateurById(idProprietaire));
+            Bien bienUpdated = bien.getBienById(idBien);
+            for (int idCaracteristique : idCaracteristiques) {
+                CaracteristiqueBien caracteristiqueBien = new CaracteristiqueBien(new Caracteristique().getCaracteristiqueById(idCaracteristique), bienUpdated);
+            }
         }
         root = FXMLLoader.load(getClass().getResource("../Biens/Biens.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -150,6 +199,35 @@ public class AjouterBiensController implements Initializable{
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    public void addingCaracteristique(ActionEvent event) {
+        Caracteristique Caracteristique = new Caracteristique(newCaracteristique.getText());
+        listCaracteristiques.getChildren().clear();
+        try {
+            caracteristiques = jdbcDataAccess.getCaracteristiques();
+            for (Caracteristique caracteristique : caracteristiques) {
+                Button button = new Button(caracteristique.getNom());
+                button.setStyle("-fx-background-color: lightgrey");
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (idCaracteristiques.contains(caracteristique.getId())) {
+                            idCaracteristiques.remove((Integer) caracteristique.getId());
+                            button.setStyle("-fx-background-color: lightgrey");
+                            return;
+                        } else {
+                            idCaracteristiques.add(caracteristique.getId());
+                            button.setStyle("-fx-background-color: rgba(151, 71, 255, 1)");
+                        }
+                    }
+                });
+                listCaracteristiques.getChildren().add(button);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setData(Bien bien) {

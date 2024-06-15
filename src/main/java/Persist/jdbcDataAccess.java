@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import Location.Bien;
+import Location.Caracteristique;
 import Location.Location;
 import Location.Utilisateur;
 
@@ -114,6 +115,28 @@ public class jdbcDataAccess {
                 }
             }
             return locations;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public List<Caracteristique> getCaracteristiques() throws SQLException {
+        try {
+            String sql = "SELECT * FROM caracteristique";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            List<Caracteristique> caracteristiques = new ArrayList<>();
+            Caracteristique caracteristique = new Caracteristique();
+            if (resultSet == null) {
+                System.out.println("Aucun bien trouvé");
+            } else {
+                while (resultSet.next()) {
+                    caracteristiques.add(caracteristique.getCaracteristiqueById(resultSet.getInt("id")));
+                }
+            }
+            return caracteristiques;
         } catch (Exception e) {
             System.out.println("Erreur : " + e);
         }
