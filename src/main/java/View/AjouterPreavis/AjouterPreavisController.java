@@ -77,7 +77,7 @@ public class AjouterPreavisController implements Initializable {
     }
 
     @FXML
-    public void ajouterLocation(ActionEvent event) {
+    public void ajouterPreavis(ActionEvent event) {
         try {
             if (isAjouter) {
                 String dateDebut = LocalDate.now().toString();

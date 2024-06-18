@@ -24,7 +24,7 @@
             </Label>
             <Label layoutX="40.0" layoutY="140.0" text="Date départ : " />
             <Label layoutX="40.0" layoutY="170.0" text="Motif : " />
-            <TextField layoutX="160.0" layoutY="140.0" promptText="Date départ" fx:id="dateFin" />
+            <input type="date" layoutX="160.0" layoutY="140.0" promptText="Date départ" fx:id="dateFin" />
             <TextField layoutX="160.0" layoutY="170.0" promptText="Motif" fx:id="motif" />
             <Button layoutX="40.0" layoutY="200.0" mnemonicParsing="false" text="Sauvegarder" onAction="#ajouterPreavis" />
             <Button layoutX="260.0" layoutY="200.0" mnemonicParsing="false" text="Annuler" onAction="#goToLocation"/>

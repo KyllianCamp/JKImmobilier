@@ -68,7 +68,8 @@ public class AjouterLocationController implements Initializable {
     public void ajouterLocation(ActionEvent event) {
         try {
             if (isAjouter) {
-                Location location = new Location(dateDebut.getText(), dateFin.getText(), commentaire.getText(), null);
+                Bien bien = new Bien();
+                Location location = new Location(dateDebut.getText(), dateFin.getText(), commentaire.getText(), bien.getBienById(idBien)); 
             } else {
                 Location location = new Location();
                 Utilisateur locataire = new Utilisateur();

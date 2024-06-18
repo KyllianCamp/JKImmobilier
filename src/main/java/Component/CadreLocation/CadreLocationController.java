@@ -76,7 +76,7 @@ public class CadreLocationController {
             button.setOnAction(e -> addPreavis(location));
             button.setLayoutX(420);
             button.setLayoutY(195);
-        } else {
+        } else if(location.getPreavis() != null) {
             Label preavis = new Label("Préavis : " + location.getPreavis().getMotif());
             Label datePreavis = new Label("Départ le : " + location.getPreavis().getDateDepart());
             background.getChildren().add(datePreavis);

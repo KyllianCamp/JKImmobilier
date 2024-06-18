@@ -33,8 +33,14 @@ public class Preavis extends Persist{
         this.dateDepart = dateDepart;
         this.motif = motif;
         this.location = location;
-
+        System.out.println(this);
         create(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Preavis [id=" + id + ", datePreavis=" + datePreavis + ", dateDepart=" + dateDepart + ", motif=" + motif
+                + ", location=" + location + "]";
     }
 
     public String getDatePreavis() {
