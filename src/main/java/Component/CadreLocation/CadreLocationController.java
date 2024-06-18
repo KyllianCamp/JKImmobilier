@@ -69,14 +69,21 @@ public class CadreLocationController {
             button.setLayoutY(195);
         }
 
-        if (location.getPreavis() == null) {
+        if (location.getPreavis() == null && location.getLocataire() != null){
             Button button = new Button("Ajouter un préavis");
             background.getChildren().add(button);
             button.setOnAction(e -> addPreavis());
             button.setLayoutX(420);
             button.setLayoutY(195);
         } else {
-            
+            Label preavis = new Label("Préavis : " + location.getPreavis().getMotif());
+            Label datePreavis = new Label("Départ le : " + location.getPreavis().getDateDepart());
+            background.getChildren().add(datePreavis);
+            background.getChildren().add(preavis);
+            datePreavis.setLayoutX(420);
+            datePreavis.setLayoutY(215);
+            preavis.setLayoutX(420);
+            preavis.setLayoutY(195);
         }
     }
 
