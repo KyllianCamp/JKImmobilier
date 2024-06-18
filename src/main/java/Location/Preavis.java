@@ -1,5 +1,7 @@
 package Location;
 
+import java.time.LocalDate;
+
 import Persist.Persist;
 import jakarta.persistence.*;
 
