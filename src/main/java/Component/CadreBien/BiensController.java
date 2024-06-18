@@ -42,7 +42,7 @@ public class BiensController {
 
     public void setData(Bien bien) {
         if (bien.getPhotographies().size() > 0) {
-            File file = new File("./Photos/" + bien.getPhotographies().get(0).getLien());
+            File file = new File("./Photos/" + bien.getPhotographies().get(bien.getPhotographies().size()-1).getLien());
             Image image = new Image(file.toURI().toString());
             imageView.setImage(image);
         }
