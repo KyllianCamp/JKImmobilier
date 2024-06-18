@@ -21,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -36,6 +37,9 @@ public class UtilisateursController implements Initializable {
 
     @FXML
     private HBox dynamicContainer;
+
+    @FXML
+    private TextField textField;
 
     @FXML
     public void goToAjouterUser(ActionEvent event) throws IOException {
@@ -72,6 +76,33 @@ public class UtilisateursController implements Initializable {
         }
         for (Utilisateur utilisateur : utilisateurs) {
             loader = new FXMLLoader(getClass().getResource("../../Component/CadreUtilisateurs/CadreUtilisateurs.fxml"));
+            Utilisateur newUtilisateur = utilisateur.getUtilisateurById(utilisateur.getId());
+            try {
+                Parent component = loader.load();
+                CadreUtilisateursController controller = loader.getController();
+                controller.setData(newUtilisateur);
+                dynamicContainer.getChildren().add(component);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    public void filter(ActionEvent event) {
+        jdbcDataAccess jdbcDataAccess = new jdbcDataAccess();
+        List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+        try {
+            utilisateurs = jdbcDataAccess.getTiers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        dynamicContainer.getChildren().clear();
+        for (Utilisateur utilisateur : utilisateurs) {
+            if ((!utilisateur.getNom().contains(textField.getText())) && (!utilisateur.getPrenom().contains(textField.getText()))){
+                continue;
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/CadreUtilisateurs/CadreUtilisateurs.fxml"));
             Utilisateur newUtilisateur = utilisateur.getUtilisateurById(utilisateur.getId());
             try {
                 Parent component = loader.load();
