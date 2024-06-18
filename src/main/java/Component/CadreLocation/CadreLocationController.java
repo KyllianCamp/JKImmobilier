@@ -68,6 +68,16 @@ public class CadreLocationController {
             button.setLayoutX(370);
             button.setLayoutY(195);
         }
+
+        if (location.getPreavis() == null) {
+            Button button = new Button("Ajouter un préavis");
+            background.getChildren().add(button);
+            button.setOnAction(e -> addPreavis());
+            button.setLayoutX(420);
+            button.setLayoutY(195);
+        } else {
+            
+        }
     }
 
     private void modifyLocation(Location location) {
@@ -98,5 +108,9 @@ public class CadreLocationController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addPreavis() {
+        System.out.println("ajouter préavis");
     }
 }

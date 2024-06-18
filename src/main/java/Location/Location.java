@@ -81,6 +81,10 @@ public class Location extends Persist{
         return paiements;
     }
 
+    public Preavis getPreavis() {
+        return preavis;
+    }
+
     public void updateAll (int id, String dateDebut, String dateFin, String commentaire, Utilisateur locataire, Bien bien) {
         this.id = id;
         this.dateDebut = dateDebut;
