@@ -1,5 +1,8 @@
 package View.AjouterModifierBiens;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -11,6 +14,7 @@ import Component.Header.HeaderController;
 import Location.Bien;
 import Location.Caracteristique;
 import Location.CaracteristiqueBien;
+import Location.Photographie;
 import Location.Utilisateur;
 import Persist.jdbcDataAccess;
 import javafx.event.ActionEvent;
@@ -29,6 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class AjouterBiensController implements Initializable{
@@ -89,6 +94,14 @@ public class AjouterBiensController implements Initializable{
 
     @FXML
     private TextField newCaracteristique;
+
+    private File selectedFile;
+
+    @FXML
+    private Button selectPhotoButton;
+
+    @FXML
+    private Button savePhotoButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -176,6 +189,7 @@ public class AjouterBiensController implements Initializable{
             for (int idCaracteristique : idCaracteristiques) {
                 CaracteristiqueBien caracteristiqueBien = new CaracteristiqueBien(new Caracteristique().getCaracteristiqueById(idCaracteristique), bien);
             }
+            Photographie photographie = new Photographie(selectedFile.getName(), bien);
         } else {
             Utilisateur proprietaire = new Utilisateur();
             Bien bien = new Bien();
@@ -184,7 +198,9 @@ public class AjouterBiensController implements Initializable{
             for (int idCaracteristique : idCaracteristiques) {
                 CaracteristiqueBien caracteristiqueBien = new CaracteristiqueBien(new Caracteristique().getCaracteristiqueById(idCaracteristique), bienUpdated);
             }
+            Photographie photographie = new Photographie(selectedFile.getName(), bienUpdated);
         }
+
         root = FXMLLoader.load(getClass().getResource("../Biens/Biens.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -243,6 +259,37 @@ public class AjouterBiensController implements Initializable{
         type.setText(bien.getType());
         menuButton.setText(bien.getProprietaire().getNom());
         idProprietaire = bien.getProprietaire().getId();
+    }
+
+    @FXML
+    public void handleSelectPhoto(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Sélectionner une photo");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
+        );
+        Stage stage = (Stage) selectPhotoButton.getScene().getWindow();
+        selectedFile = fileChooser.showOpenDialog(stage);
+    }
+
+    @FXML
+    public void handleSavePhoto(ActionEvent event) {
+        if (selectedFile != null) {
+            File destFile = new File("./Photos/", selectedFile.getName());
+            try (FileInputStream fis = new FileInputStream(selectedFile);
+                 FileOutputStream fos = new FileOutputStream(destFile)) {
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = fis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, length);
+                }
+                System.out.println("Photo enregistrée avec succès !");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Aucun fichier sélectionné.");
+        }
     }
 
 }

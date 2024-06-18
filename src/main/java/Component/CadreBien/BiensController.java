@@ -41,11 +41,11 @@ public class BiensController {
     private VBox background;
 
     public void setData(Bien bien) {
-        String localImagePath = "/Users/kyllian/Pictures/24h du Mans/DSC06545.JPG";
-        // Convert the local file path to a URL
-        File file = new File(localImagePath);
-        Image image = new Image(file.toURI().toString());
-        imageView.setImage(image);
+        if (bien.getPhotographies().size() > 0) {
+            File file = new File("./Photos/" + bien.getPhotographies().get(0).getLien());
+            Image image = new Image(file.toURI().toString());
+            imageView.setImage(image);
+        }
 
         titleLabel.setText(bien.getNom());
         locationLabel.setText(bien.getAdresse() + ", " + bien.getCodePostal());
@@ -74,12 +74,12 @@ public class BiensController {
     }
 
     private void deleteBien(Bien bien) {
+        bien.delete();
         try {
             root = FXMLLoader.load(getClass().getResource("../../View/Biens/Biens.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        bien.delete();
         stage = (Stage) deleteButton.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
