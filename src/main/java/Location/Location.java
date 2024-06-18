@@ -30,7 +30,7 @@ public class Location extends Persist{
     @JoinColumn(name = "idBien", referencedColumnName = "id")
     private Bien bien;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Paiement> paiements;
 
     @OneToOne(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

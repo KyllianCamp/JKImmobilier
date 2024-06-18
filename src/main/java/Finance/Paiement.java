@@ -28,6 +28,6 @@ public class Paiement {
     @JoinColumn(name = "idLocation", referencedColumnName = "id")
     private Location location;
 
-    @OneToMany(mappedBy = "paiement", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "paiement", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Facture> facture;
 }

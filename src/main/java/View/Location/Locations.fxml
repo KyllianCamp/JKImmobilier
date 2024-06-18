@@ -14,12 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Location.LocationController" fx:id="layout" id="layout">
+<VBox prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Location.LocationController" fx:id="layout" id="layout">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>
         <Button mnemonicParsing="false" text="Ajouter une nouvelle location" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" onAction="#goToAjouterLocation" />
-        <TextField layoutX="14.0" layoutY="15.0" promptText="Rechercher" AnchorPane.leftAnchor="15.0" />
+        <TextField layoutX="14.0" layoutY="15.0" promptText="Rechercher" AnchorPane.leftAnchor="15.0" fx:id="textField" />
+        <Button layoutY="15.0" text="🔍" AnchorPane.topAnchor="14.0" AnchorPane.leftAnchor="180.0" onAction="#filter" />
         <HBox fx:id="listLocation" layoutX="15.2" layoutY="78.4" prefHeight="322.0" prefWidth="571.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
             <Accordion layoutX="154.0" layoutY="243.0" />
       </children>

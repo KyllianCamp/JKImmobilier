@@ -26,10 +26,10 @@
               <MenuItem mnemonicParsing="false" text="Lister dossiers" onAction="#goToDossiers"/>
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Gestion des utilisateurs">
+          <Menu mnemonicParsing="false" text="Gestion des Tiers">
             <items>
                     <MenuItem mnemonicParsing="false" text="Accueil" onAction="#goToUtilisateurs"/>
-              <MenuItem mnemonicParsing="false" text="Ajouter un utilisateur" onAction="#goToAjouterUsers" />
+              <MenuItem mnemonicParsing="false" text="Ajouter un tiers" onAction="#goToAjouterUsers" />
             </items>
           </Menu>
         </menus>

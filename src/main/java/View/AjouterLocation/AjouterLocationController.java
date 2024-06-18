@@ -1,10 +1,12 @@
 package View.AjouterLocation;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import Component.Header.HeaderController;
 import Location.Bien;
 import Location.Location;
 import Location.Utilisateur;
@@ -19,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AjouterLocationController implements Initializable {
@@ -50,6 +53,9 @@ public class AjouterLocationController implements Initializable {
     
     @FXML
     public MenuButton menuButton;
+
+    @FXML
+    public VBox layout;
 
     @FXML
     public void goToLocation(ActionEvent event) {
@@ -108,6 +114,14 @@ public class AjouterLocationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/Header/Header.fxml"));
+        try {
+            Parent component = loader.load();
+            HeaderController controller = loader.getController();
+            layout.getChildren().add(0, component);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try {   
             biens = jdbcDataAccess.getBienWithoutLocation();
         } catch (SQLException e) {

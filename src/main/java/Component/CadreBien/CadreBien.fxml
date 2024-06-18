@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" stylesheets="@styles.css" fx:controller="Component.CadreBien.BiensController" fx:id="background">
-    <ImageView fx:id="imageView" fitWidth="100" fitHeight="100" />
+    <ImageView fx:id="imageView" fitWidth="250" fitHeight="100" />
     <Label fx:id="titleLabel" text="Désignation du produit" style="-fx-font-weight: bold; -fx-font-size: 14;" />
     <Label fx:id="locationLabel" text="Bordeaux, Aquitaine, France" style="-fx-font-size: 12;" />
     <Label fx:id="detailsLabel" text="🛏 5 couchages" style="-fx-font-size: 12;" />
