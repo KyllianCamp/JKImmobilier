@@ -40,7 +40,7 @@ public class UtilisateursController implements Initializable {
     @FXML
     public void goToAjouterUser(ActionEvent event) throws IOException {
          try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterModifierBiens/ajouterModifierBiens.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterUsers/ajouterModifierUsers.fxml"));
             root = loader.load();
             
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

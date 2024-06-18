@@ -40,16 +40,16 @@ public class Bien extends Persist{
     @JoinColumn(name = "idProprietaire", referencedColumnName = "id")
     private Utilisateur proprietaire;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Location> locations;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<CaracteristiqueBien> caracteristiqueBiens;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dossier> dossiers;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Photographie> photographies;
 
     public Bien() {
@@ -183,8 +183,61 @@ public class Bien extends Persist{
         update(this);
     }
 
-    public void delete() {
-        delete(this);
+    public void delete(int id) {
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        Bien bienToDelete = new Bien();
+        Bien bien = bienToDelete.getBienById(id);
+        try {
+            transaction.begin();
+            bien = entityManager.find(Bien.class, bien.getId());
+            if (bien != null) {
+                // Supprimer les entités liées si nécessaire
+                if (bien.getLocations() != null) {
+                    for (Location location : bien.getLocations()) {
+                        entityManager.remove(location);
+                    }
+                }
+                if (bien.getCaracteristiqueBiens() != null) {
+                    for (CaracteristiqueBien caracteristiqueBien : bien.getCaracteristiqueBiens()) {
+                        entityManager.remove(caracteristiqueBien);
+                    }
+                }
+                if (bien.getDossiers() != null) {
+                    for (Dossier dossier : bien.getDossiers()) {
+                        entityManager.remove(dossier);
+                    }
+                }
+                if (bien.getPhotographies() != null) {
+                    for (Photographie photographie : bien.getPhotographies()) {
+                        entityManager.remove(photographie);
+                    }
+                }
+                entityManager.remove(bien);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public List<CaracteristiqueBien> getCaracteristiqueBiens() {
+        return caracteristiqueBiens;
+    }
+
+    public List<Dossier> getDossiers() {
+        return dossiers;
     }
 
     @Override

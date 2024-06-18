@@ -74,7 +74,8 @@ public class BiensController {
     }
 
     private void deleteBien(Bien bien) {
-        bien.delete();
+        Bien bienToDelete = new Bien();
+        bienToDelete.delete(bien.getId());
         try {
             root = FXMLLoader.load(getClass().getResource("../../View/Biens/Biens.fxml"));
         } catch (IOException e) {
