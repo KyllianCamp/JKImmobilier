@@ -40,13 +40,13 @@ public class Bien extends Persist{
     @JoinColumn(name = "idProprietaire", referencedColumnName = "id")
     private Utilisateur proprietaire;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Location> locations;
 
     @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<CaracteristiqueBien> caracteristiqueBiens;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Dossier> dossiers;
 
     @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -242,10 +242,11 @@ public class Bien extends Persist{
 
     @Override
     public String toString() {
-        return "Bien [id=" + id + ", nom=" + nom + ", adresse=" + adresse + ", codePostal=" + codePostal + ", nbPieces="
-                + nbPieces + ", surface=" + surface + ", description=" + description + ", loyer=" + loyer + ", type="
-                + type + ", proprietaire=" + proprietaire + "]";
+        return "Bien [ " + " caracteristiqueBiens="
+                + caracteristiqueBiens + "]";
     }
+
+    
     
     
 }
