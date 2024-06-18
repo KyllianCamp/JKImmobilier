@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
 
 <VBox prefHeight="594.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AjouterModifierBiens.AjouterBiensController" fx:id="layout">
   <children>
@@ -39,10 +41,26 @@
             <TextField layoutX="160.0" layoutY="220.0" promptText="Description du bien" fx:id="description" />
             <TextField layoutX="160.0" layoutY="250.0" promptText="Loyer au mois" fx:id="loyer" />
             <TextField layoutX="160.0" layoutY="280.0" promptText="Nombre de pièces" fx:id="nbPiece" />
-            <MenuButton fx:id="menuButton" layoutX="160.0" layoutY="314.0" mnemonicParsing="false" text="Propriétaire" />
-            <Label layoutX="40.0" layoutY="344.0" text="Ajouter une photographie : " />
+            <MenuButton fx:id="menuButton" layoutX="160.0" layoutY="310.0" mnemonicParsing="false" text="Propriétaire" />
+            <VBox layoutX="40" layoutY="350" spacing="5">
+              <children>
+                  <Button text="Sélectionner une photo" onAction="#handleSelectPhoto" fx:id="selectPhotoButton" />
+                  <Button text="Enregistrer la photo" onAction="#handleSavePhoto" fx:id="savePhotoButton" />
+              </children>
+            </VBox> 
             <Button layoutX="128.0" layoutY="529.0" mnemonicParsing="false" text="Sauvegarder" onAction="#clickOnSaveButton" />
             <Button layoutX="341.0" layoutY="529.0" mnemonicParsing="false" text="Annuler" onAction="#clickOnStopButton"/>
+            <VBox layoutX="40.0" layoutY="420.0" spacing="10">
+              <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" spacing="10">
+                <TextField promptText="caractéristique" fx:id="newCaracteristique" />
+                <Button text="+" onAction="#addingCaracteristique"/>
+              </HBox>
+              <Text text="Caractéristiques :"/>
+              <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" spacing="10" fx:id="listCaracteristiques">
+                <children>
+                </children>
+              </HBox>
+            </VBox>
       </children>
     </AnchorPane>
       <VBox />

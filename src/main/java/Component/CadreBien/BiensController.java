@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class BiensController {
@@ -36,13 +37,15 @@ public class BiensController {
     private Button modifyButton;
     @FXML
     private Button deleteButton;
+    @FXML
+    private VBox background;
 
     public void setData(Bien bien) {
-        String localImagePath = "/Users/kyllian/Pictures/24h du Mans/DSC06545.JPG";
-        // Convert the local file path to a URL
-        File file = new File(localImagePath);
-        Image image = new Image(file.toURI().toString());
-        imageView.setImage(image);
+        if (bien.getPhotographies().size() > 0) {
+            File file = new File("./Photos/" + bien.getPhotographies().get(0).getLien());
+            Image image = new Image(file.toURI().toString());
+            imageView.setImage(image);
+        }
 
         titleLabel.setText(bien.getNom());
         locationLabel.setText(bien.getAdresse() + ", " + bien.getCodePostal());
@@ -52,6 +55,7 @@ public class BiensController {
         // Ajouter les actions des boutons
         modifyButton.setOnAction(e -> modifyBien(bien));
         deleteButton.setOnAction(e -> deleteBien(bien));
+        background.setOnMouseClicked(e -> showBien(bien));
     }
 
     private void modifyBien(Bien bien) {
@@ -70,16 +74,20 @@ public class BiensController {
     }
 
     private void deleteBien(Bien bien) {
+        bien.delete();
         try {
             root = FXMLLoader.load(getClass().getResource("../../View/Biens/Biens.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        bien.delete();
         stage = (Stage) deleteButton.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void showBien(Bien bien) {
+        System.out.println(bien.getNom());
     }
 }
 

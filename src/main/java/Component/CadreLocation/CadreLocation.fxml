@@ -6,18 +6,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="Component.CadreLocation.CadreLocationController" id="background">
-    <AnchorPane layoutY="60.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="Component.CadreLocation.CadreLocationController">
+    <AnchorPane layoutY="60.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS" fx:id="background">
         <children>
            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#c8d2dc" height="250.0" layoutX="95.2" stroke="BLACK" strokeType="INSIDE" width="526.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+           <Label text="Prix au mois" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" fx:id="prix" />
            <Label text="Nom du logement" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="10.0" fx:id="nom"/>
            <Label text="Position" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0" fx:id="position"/>
            <Label text="Paiement : " AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="70.0" fx:id="paiement"/>
            <Label text="Contact du propriétaire : " AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="115.0" fx:id="proprietaire"/>
            <Label text="Contact du locataire : " AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="150.0" fx:id="locataire"/>
-           <Button mnemonicParsing="false" text="Télécharger la facture du mois en cours" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="195.0" />
-           <Button mnemonicParsing="false" text="Modifier" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="195.0" />
-           <Label text="Prix au mois" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" fx:id="prix" />
+           <Button mnemonicParsing="false" text="Modifier" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="195.0" fx:id="modifyButton"/>
         </children>
      </AnchorPane>
 </VBox>

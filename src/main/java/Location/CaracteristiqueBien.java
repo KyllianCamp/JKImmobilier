@@ -1,10 +1,11 @@
 package Location;
 
+import Persist.Persist;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "caracteristiqueBien")
-public class CaracteristiqueBien {
+public class CaracteristiqueBien extends Persist{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,4 +17,14 @@ public class CaracteristiqueBien {
     @ManyToOne
     @JoinColumn(name = "idBien", referencedColumnName = "id")
     private Bien bien;
+
+    public CaracteristiqueBien() {
+    }
+
+    public CaracteristiqueBien(Caracteristique caracteristique, Bien bien) {
+        this.caracteristique = caracteristique;
+        this.bien = bien;
+
+        create(this);
+    }
 }

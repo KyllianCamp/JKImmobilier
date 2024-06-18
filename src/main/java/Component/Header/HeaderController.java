@@ -63,7 +63,7 @@ public class HeaderController {
     @FXML
     public void goToDemandeLocation(ActionEvent event) throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/DemandeLocations/DemandeLocations.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterLocation/AjouterLocation.fxml"));
             root = loader.load();
             scene = new Scene(root);
             stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
@@ -94,6 +94,20 @@ public class HeaderController {
     public void goToAjouterUsers(ActionEvent event) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterUsers/AjouterModifierUsers.fxml"));
+            root = loader.load();
+            scene = new Scene(root);
+            stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML 
+    public void goToDossiers(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/Dossier/Dossier.fxml"));
             root = loader.load();
             scene = new Scene(root);
             stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();

@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import Location.Bien;
+import Location.Caracteristique;
+import Location.Dossier;
 import Location.Location;
 import Location.Utilisateur;
 
@@ -29,13 +31,12 @@ public class jdbcDataAccess {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             List<Utilisateur> utilisateurs = new ArrayList<>();
+            Utilisateur utilisateur = new Utilisateur();
             if (resultSet == null) {
                 System.out.println("Aucun utilisateur trouvé");
             } else {
                 while (resultSet.next()) {
-                    Utilisateur utilisateur = new Utilisateur(resultSet.getInt("id"), resultSet.getString("nom"),
-                            resultSet.getString("prenom"), resultSet.getString("mail"), resultSet.getString("telephone"));
-                    utilisateurs.add(utilisateur);
+                    utilisateurs.add(utilisateur.getUtilisateurById(resultSet.getInt("id")));
                 }
             }
             return utilisateurs;
@@ -48,6 +49,35 @@ public class jdbcDataAccess {
     public List<Bien> getBiens() throws SQLException {
         try {
             String sql = "SELECT * FROM bien";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            List<Bien> biens = new ArrayList<>();
+            if (resultSet == null) {
+                System.out.println("Aucun bien trouvé");
+            } else {
+                while (resultSet.next()) {
+                    Bien bien = new Bien(resultSet.getInt("id"), resultSet.getString("nom"),
+                            resultSet.getString("adresse"), resultSet.getString("codePostal") , resultSet.getInt("nbPieces"),
+                            resultSet.getInt("surface"), resultSet.getString("description"), resultSet.getInt("loyer"), 
+                            resultSet.getString("type"));
+                    biens.add(bien);
+                }
+            }
+            return biens;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public List<Bien> getBienWithoutLocation() throws SQLException {
+        try {
+            String sql = "SELECT b.*, l.*\n" + //
+                                "FROM Bien b\n" + //
+                                "LEFT JOIN Location l ON b.id = l.idBien\n" + //
+                                "WHERE l.id IS NULL \n" + //
+                                "   OR (l.dateFin IS NOT NULL AND l.dateFin != \"\" AND l.dateFin < CURRENT_DATE);";
             Connection connection = jdbcDataAccess();
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -86,6 +116,95 @@ public class jdbcDataAccess {
                 }
             }
             return locations;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public Location getLastLocationOfBien(int idBien) throws SQLException {
+        try {
+            String sql = "SELECT * FROM location WHERE idBien = ? ORDER BY dateDebut DESC LIMIT 1";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, idBien);
+            ResultSet resultSet = statement.executeQuery();
+            Location location = new Location();
+            if (resultSet == null) {
+                System.out.println("Aucune location trouvée");
+            } else {
+                while (resultSet.next()) {
+                    location = location.getLocationById(resultSet.getInt("id"));
+                }
+            }
+            return location;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public List<Caracteristique> getCaracteristiques() throws SQLException {
+        try {
+            String sql = "SELECT * FROM caracteristique";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            List<Caracteristique> caracteristiques = new ArrayList<>();
+            Caracteristique caracteristique = new Caracteristique();
+            if (resultSet == null) {
+                System.out.println("Aucun bien trouvé");
+            } else {
+                while (resultSet.next()) {
+                    caracteristiques.add(caracteristique.getCaracteristiqueById(resultSet.getInt("id")));
+                }
+            }
+            return caracteristiques;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public List<Dossier> getDossiers() throws SQLException {
+        try {
+            String sql = "SELECT * FROM dossier";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            List<Dossier> dossiers = new ArrayList<>();
+            Dossier dossier = new Dossier();
+            if (resultSet == null) {
+                System.out.println("Aucun dossier trouvé");
+            } else {
+                while (resultSet.next()) {
+                    dossiers.add(dossier.getDossierById(resultSet.getInt("id")));
+                }
+            }
+            return dossiers;
+        } catch (Exception e) {
+            System.out.println("Erreur : " + e);
+        }
+        return null;
+    }
+
+    public List<Dossier> getDossiersOfBien(int idBien) throws SQLException {
+        try {
+            String sql = "SELECT * FROM dossier WHERE idBien = ?";
+            Connection connection = jdbcDataAccess();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, idBien);
+            ResultSet resultSet = statement.executeQuery();
+            List<Dossier> dossiers = new ArrayList<>();
+            Dossier dossier = new Dossier();
+            if (resultSet == null) {
+                System.out.println("Aucun dossier trouvé");
+            } else {
+                while (resultSet.next()) {
+                    dossiers.add(dossier.getDossierById(resultSet.getInt("id")));
+                }
+            }
+            return dossiers;
         } catch (Exception e) {
             System.out.println("Erreur : " + e);
         }

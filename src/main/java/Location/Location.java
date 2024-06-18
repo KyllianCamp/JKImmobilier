@@ -16,14 +16,14 @@ public class Location extends Persist{
     @Column(name = "dateDebut")
     private String dateDebut;
 
-    @Column(name = "dateFin")
+    @Column(name = "dateFin", nullable = true)
     private String dateFin;
 
     @Column(name = "commentaire")
     private String commentaire;
 
     @ManyToOne
-    @JoinColumn(name = "idLocataire", referencedColumnName = "id")
+    @JoinColumn(name = "idLocataire", referencedColumnName = "id", nullable = true)
     private Utilisateur locataire;
 
     @ManyToOne
@@ -33,17 +33,17 @@ public class Location extends Persist{
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Paiement> paiements;
 
-    @OneToOne(mappedBy = "location", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "location", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Preavis preavis;
 
     public Location() {
     }
 
-    public Location(String dateDebut, String dateFin, String commentaire, Utilisateur locataire, Bien bien) {
+    public Location(String dateDebut, String dateFin, String commentaire, Bien bien) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.commentaire = commentaire;
-        this.locataire = locataire;
+        this.locataire = null;
         this.bien = bien;
 
         create(this);
@@ -79,6 +79,21 @@ public class Location extends Persist{
 
     public List<Paiement> getPaiements() {
         return paiements;
+    }
+
+    public Preavis getPreavis() {
+        return preavis;
+    }
+
+    public void updateAll (int id, String dateDebut, String dateFin, String commentaire, Utilisateur locataire, Bien bien) {
+        this.id = id;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.commentaire = commentaire;
+        this.locataire = locataire;
+        this.bien = bien;
+
+        update(this);
     }
 
     @Override

@@ -21,8 +21,9 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Gestion des locations">
             <items>
-                    <MenuItem mnemonicParsing="false" text="Accueil" onAction="#goToLocations" />
+              <MenuItem mnemonicParsing="false" text="Accueil" onAction="#goToLocations" />
               <MenuItem mnemonicParsing="false" text="Ajouter une location" onAction="#goToDemandeLocation" />
+              <MenuItem mnemonicParsing="false" text="Lister dossiers" onAction="#goToDossiers"/>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Gestion des utilisateurs">

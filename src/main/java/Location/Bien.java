@@ -43,13 +43,13 @@ public class Bien extends Persist{
     @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)
     private List<Location> locations;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CaracteristiqueBien> caracteristiqueBiens;
 
     @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)
     private List<Dossier> dossiers;
 
-    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bien", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Photographie> photographies;
 
     public Bien() {
@@ -163,6 +163,10 @@ public class Bien extends Persist{
 
     public Utilisateur getProprietaire() {
         return proprietaire;
+    }
+
+    public List<Photographie> getPhotographies() {
+        return photographies;
     }
 
     public void updateAll(int id, String nom, String adresse, String codePostal, int nbPieces, int surface, String description, int loyer, String type, Utilisateur proprietaire) {
