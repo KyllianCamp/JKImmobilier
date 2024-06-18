@@ -5,6 +5,7 @@ import java.io.IOException;
 import Location.Location;
 import View.AjouterDossier.AjouterDossierController;
 import View.AjouterLocation.AjouterLocationController;
+import View.AjouterPreavis.AjouterPreavisController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -72,10 +73,10 @@ public class CadreLocationController {
         if (location.getPreavis() == null && location.getLocataire() != null){
             Button button = new Button("Ajouter un préavis");
             background.getChildren().add(button);
-            button.setOnAction(e -> addPreavis());
+            button.setOnAction(e -> addPreavis(location));
             button.setLayoutX(420);
             button.setLayoutY(195);
-        } else {
+        } else if(location.getPreavis() != null) {
             Label preavis = new Label("Préavis : " + location.getPreavis().getMotif());
             Label datePreavis = new Label("Départ le : " + location.getPreavis().getDateDepart());
             background.getChildren().add(datePreavis);
@@ -117,7 +118,19 @@ public class CadreLocationController {
         }
     }
 
-    private void addPreavis() {
-        System.out.println("ajouter préavis");
+    private void addPreavis(Location location) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/AjouterPreavis/AjouterPreavis.fxml"));
+            root = loader.load();
+            AjouterPreavisController controller = loader.getController();
+            controller.setLocation(location.getId());
+            Stage stage = (Stage) nom.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

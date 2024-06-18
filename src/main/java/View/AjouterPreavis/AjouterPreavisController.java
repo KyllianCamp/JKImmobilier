@@ -1,14 +1,14 @@
-package View.AjouterLocation;
+package View.AjouterPreavis;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import Component.Header.HeaderController;
 import Location.Bien;
 import Location.Location;
+import Location.Preavis;
 import Location.Utilisateur;
 import Persist.jdbcDataAccess;
 import javafx.event.ActionEvent;
@@ -21,10 +21,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class AjouterLocationController implements Initializable {
+public class AjouterPreavisController implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -37,25 +36,21 @@ public class AjouterLocationController implements Initializable {
     private int idBien;
     private int idLocataire;
 
-    private Location locationToModify;
+    private Preavis preavisToModify;
 
     @FXML
     public Boolean isAjouter = true;
 
     @FXML
-    public TextField dateDebut;
-
-    @FXML
     public TextField dateFin;
 
     @FXML
-    public TextField commentaire;
+    public TextField motif;
     
     @FXML
     public MenuButton menuButton;
 
-    @FXML
-    public VBox layout;
+    private int idLoc;
 
     @FXML
     public void goToLocation(ActionEvent event) {
@@ -70,12 +65,24 @@ public class AjouterLocationController implements Initializable {
         }
     }
 
+    public void setData(Preavis preavis) {
+        preavisToModify = preavis;
+        isAjouter = false;
+        dateFin.setText(preavis.getDateDepart());
+        motif.setText(preavis.getMotif());
+    }
+
+    public void setLocation(int idLocation) {
+        idLoc = idLocation;
+    }
+
     @FXML
-    public void ajouterLocation(ActionEvent event) {
+    public void ajouterPreavis(ActionEvent event) {
         try {
             if (isAjouter) {
-                Bien bien = new Bien();
-                Location location = new Location(dateDebut.getText(), dateFin.getText(), commentaire.getText(), bien.getBienById(idBien)); 
+                String dateDebut = LocalDate.now().toString();
+                Location location = new Location();
+                Preavis preavis = new Preavis(dateDebut, dateFin.getText(), motif.getText(), location.getLocationById(idLoc));
             } else {
                 Location location = new Location();
                 Utilisateur locataire = new Utilisateur();
@@ -84,8 +91,6 @@ public class AjouterLocationController implements Initializable {
                 } else {
                     locataire = null;
                 }
-                Bien bien = locationToModify.getBien();
-                location.updateAll(locationToModify.getId(), dateDebut.getText(), dateFin.getText(), commentaire.getText(), locataire, bien.getBienById(idBien));
             }
             root = FXMLLoader.load(getClass().getResource("../Location/Locations.fxml"));
             stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -97,31 +102,10 @@ public class AjouterLocationController implements Initializable {
         }
     }
 
-    public void setData(Location location) {
-        locationToModify = location;
-        isAjouter = false;
-        dateDebut.setText(location.getDateDebut());
-        dateFin.setText(location.getDateFin());
-        commentaire.setText(location.getCommentaire());
-        menuButton.setText(location.getBien().getNom());
-        idBien = location.getBien().getId();
-        if (location.getLocataire() != null) {
-            idLocataire = location.getLocataire().getId();
-        } else {
-            idLocataire = 0;
-        }
-    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/Header/Header.fxml"));
-        try {
-            Parent component = loader.load();
-            HeaderController controller = loader.getController();
-            layout.getChildren().add(0, component);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         try {   
             biens = jdbcDataAccess.getBienWithoutLocation();
         } catch (SQLException e) {
