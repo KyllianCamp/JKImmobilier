@@ -33,7 +33,7 @@ public class LocationController implements Initializable{
     private VBox layout;
 
     @FXML
-    private HBox listLocation;
+    private VBox listLocation;
 
     @FXML
     private TextField textField;
@@ -54,16 +54,27 @@ public class LocationController implements Initializable{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        int i = 0;
         for (Location locationObj : locations) {
+            HBox hbox;;
+            if (i % 2 == 0 ) {
+                hbox = new HBox();
+                hbox.setSpacing(10);
+                listLocation.getChildren().add(hbox);
+            } else {
+                hbox = (HBox) listLocation.getChildren().get(listLocation.getChildren().size()-1);
+            }
+
             loader = new FXMLLoader(getClass().getResource("../../Component/CadreLocation/CadreLocation.fxml"));
             try {
                 Parent component = loader.load();
                 CadreLocationController controller = loader.getController();
                 controller.setValues(locationObj);
-                listLocation.getChildren().add(component);
+                hbox.getChildren().add(component);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            i++;
         }
     }
 

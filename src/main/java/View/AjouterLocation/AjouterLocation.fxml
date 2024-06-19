@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AjouterLocation.AjouterLocationController" fx:id="layout">
+<VBox prefHeight="1080.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AjouterLocation.AjouterLocationController" fx:id="layout">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="589.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>

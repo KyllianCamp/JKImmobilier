@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import Location.Bien;
 import View.AjouterModifierBiens.AjouterBiensController;
+import View.DetailBien.DetailBienController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -88,7 +89,18 @@ public class BiensController {
     }
 
     private void showBien(Bien bien) {
-        System.out.println(bien.getNom());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../View/DetailBien/DetailBien.fxml"));
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DetailBienController controller = loader.getController();
+        controller.setData(bien);
+        stage = (Stage) deleteButton.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

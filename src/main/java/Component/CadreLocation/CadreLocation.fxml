@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Button?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="Component.CadreLocation.CadreLocationController">
-    <AnchorPane layoutY="60.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS" fx:id="background">
+    <AnchorPane layoutY="20.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS" fx:id="background">
         <children>
            <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#c8d2dc" height="250.0" layoutX="95.2" stroke="BLACK" strokeType="INSIDE" width="526.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
            <Label text="Prix au mois" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="10.0" fx:id="prix" />

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="layout" prefHeight="1080.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DetailBien.DetailBienController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <ImageView fx:id="imageV" fitHeight="457.0" fitWidth="764.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="titleLabel" layoutX="780.0" layoutY="10.0" text="Titre">
+              <font>
+                  <Font size="40.0" />
+              </font>
+            </Label>
+            <Label fx:id="locationLabel" layoutX="780.0" layoutY="60.0" text="Adresse">
+              <font>
+                  <Font size="30.0" />
+              </font>
+            </Label>
+            <Label fx:id="detailsLabel" layoutX="780.0" layoutY="100.0" text="info">
+              <font>
+                  <Font size="30.0" />
+              </font>
+            </Label>
+            <Label fx:id="descriptionLabel" layoutX="780.0" layoutY="140.0" text="details">
+              <font>
+                  <Font size="30.0" />
+              </font>
+            </Label>
+            <Label layoutX="780.0" layoutY="200.0" text="Propriétaire :">
+              <font>
+                <Font size="30.0" />
+              </font>
+            </Label>
+            <Label layoutX="780.0" layoutY="245.0" text="Nom PRENOM" fx:id="nomProprio">
+              <font>
+                <Font size="20.0" />
+              </font>
+            </Label>
+            <Label layoutX="780.0" layoutY="270.0" text="contact" fx:id="contactProprio">
+              <font>
+                <Font size="20.0" />
+              </font>
+            </Label>
+            <Label layoutX="780.0" layoutY="295.0" text="Tel" fx:id="telProprio">
+              <font>
+                <Font size="20.0" />
+              </font>
+            </Label>
+            <Label layoutX="780.0" layoutY="330.0" text="Caractéristique :">
+              <font>
+                  <Font size="30.0" />
+              </font>
+            </Label>
+            <HBox layoutX="780.0" layoutY="370.0" prefHeight="187.0" prefWidth="784.0" fx:id="caracteristiques" spacing="10"/>
+            <Label layoutX="10.0" layoutY="480.0" text="Locations :">
+              <font>
+                  <Font size="30.0" />
+              </font>
+            <HBox layoutX="10.0" layoutY="510.0" prefHeight="347.0" prefWidth="400.0" fx:id="locations" spacing="10"/>
+            </Label>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
