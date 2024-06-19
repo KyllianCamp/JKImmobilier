@@ -15,7 +15,7 @@ public class Caracteristique extends Persist{
     @Column(name = "nom")
     private String nom;
 
-    @OneToMany(mappedBy = "caracteristique", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "caracteristique", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CaracteristiqueBien> caracteristiqueBiens;
 
     public int getId() {

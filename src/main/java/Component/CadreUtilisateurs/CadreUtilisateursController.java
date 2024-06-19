@@ -63,12 +63,12 @@ public class CadreUtilisateursController {
     }
 
     private void deleteUser(Utilisateur utilisateur) {
+        utilisateur.delete();
         try {
             root = FXMLLoader.load(getClass().getResource("../../View/Utilisateurs/Utilisateurs.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        utilisateur.delete();
         stage = (Stage) deleteButton.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

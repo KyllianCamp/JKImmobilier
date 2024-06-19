@@ -134,7 +134,11 @@ public class AjouterBiensController implements Initializable{
             caracteristiques = jdbcDataAccess.getCaracteristiques();
             for (Caracteristique caracteristique : caracteristiques) {
                 Button button = new Button(caracteristique.getNom());
-                button.setStyle("-fx-background-color: lightgrey");
+                if (idCaracteristiques.contains(caracteristique.getId())) {
+                    button.setStyle("-fx-background-color: rgba(151, 71, 255, 1)");
+                } else {
+                    button.setStyle("-fx-background-color: lightgrey");
+                }
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -258,7 +262,40 @@ public class AjouterBiensController implements Initializable{
         loyer.setText(String.valueOf(bien.getLoyer()));
         type.setText(bien.getType());
         menuButton.setText(bien.getProprietaire().getNom());
+        for (CaracteristiqueBien caracteristiqueBien : bien.getCaracteristiqueBiens()) {
+            idCaracteristiques.add(caracteristiqueBien.getCaracteristique().getId());
+        }
         idProprietaire = bien.getProprietaire().getId();
+
+        listCaracteristiques.getChildren().clear();
+        try {
+            caracteristiques = jdbcDataAccess.getCaracteristiques();
+            for (Caracteristique caracteristique : caracteristiques) {
+                Button button = new Button(caracteristique.getNom());
+                if (idCaracteristiques.contains(caracteristique.getId())) {
+                    button.setStyle("-fx-background-color: rgba(151, 71, 255, 1)");
+                } else {
+                    button.setStyle("-fx-background-color: lightgrey");
+                }
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (idCaracteristiques.contains(caracteristique.getId())) {
+                            idCaracteristiques.remove((Integer) caracteristique.getId());
+                            button.setStyle("-fx-background-color: lightgrey");
+                            return;
+                        } else {
+                            idCaracteristiques.add(caracteristique.getId());
+                            button.setStyle("-fx-background-color: rgba(151, 71, 255, 1)");
+                        }
+                    }
+                });
+                listCaracteristiques.getChildren().add(button);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML

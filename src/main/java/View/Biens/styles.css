@@ -2,7 +2,7 @@
     -fx-spacing: 10;
 }
 
-.button {
+#buttn {
     -fx-background-color: rgba(151, 71, 255, 1); /* Example of styling buttons */
     -fx-text-fill: #ffffff;
 }

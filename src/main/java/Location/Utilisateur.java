@@ -27,13 +27,13 @@ public class Utilisateur extends Persist {
     @Column(name = "telephone")
     private String telephone;
 
-    @OneToMany(mappedBy = "locataire", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "locataire", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Location> locations;
 
-    @OneToMany(mappedBy = "proprietaire", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "proprietaire", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Bien> biens;
 
-    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dossier> dossiers;
 
     public Utilisateur() {

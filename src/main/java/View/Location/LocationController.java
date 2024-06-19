@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -33,6 +34,9 @@ public class LocationController implements Initializable{
 
     @FXML
     private HBox listLocation;
+
+    @FXML
+    private TextField textField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,6 +79,32 @@ public class LocationController implements Initializable{
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void filter(ActionEvent event) {
+        jdbcDataAccess dataAccess = new jdbcDataAccess();
+        List<Location> locations = new ArrayList<>();
+        try {
+            locations = dataAccess.getLocations();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        listLocation.getChildren().clear();
+        for (Location locationObj : locations) {
+            if (!locationObj.getBien().getNom().contains(textField.getText())) {
+                continue;
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/CadreLocation/CadreLocation.fxml"));
+            try {
+                Parent component = loader.load();
+                CadreLocationController controller = loader.getController();
+                controller.setValues(locationObj);
+                listLocation.getChildren().add(component);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

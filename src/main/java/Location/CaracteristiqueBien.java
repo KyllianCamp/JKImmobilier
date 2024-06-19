@@ -21,10 +21,29 @@ public class CaracteristiqueBien extends Persist{
     public CaracteristiqueBien() {
     }
 
+    @Override
+    public String toString() {
+        return "CaracteristiqueBien [id=" + id + ", caracteristique=" + caracteristique + "]";
+    }
+
     public CaracteristiqueBien(Caracteristique caracteristique, Bien bien) {
         this.caracteristique = caracteristique;
         this.bien = bien;
 
         create(this);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public Caracteristique getCaracteristique() {
+        return caracteristique;
+    }
+
+    public void delete() {
+        delete(this);
+    }
+
+    
 }

@@ -93,4 +93,32 @@ public class Controller implements Initializable{
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void filter(ActionEvent event) throws IOException {
+        jdbcDataAccess jdbcDataAccess = new jdbcDataAccess();
+        List<Bien> biens = new ArrayList<Bien>();
+        try {
+            biens = jdbcDataAccess.getBiens();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        dynamicContainer.getChildren().clear();
+        for (Bien bien : biens) {
+            if (!bien.getNom().contains(textField.getText())) {
+                continue;
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/CadreBien/CadreBien.fxml"));
+            Bien newBien = bien.getBienById(bien.getId());
+            try {
+                Parent component = loader.load();
+                BiensController controller = loader.getController();
+                controller.setData(newBien);
+                component.getStylesheets().add(getClass().getResource("../../Component/CadreBien/styles.css").toExternalForm());
+                dynamicContainer.getChildren().add(component);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
