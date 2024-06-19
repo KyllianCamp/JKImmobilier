@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -40,10 +41,10 @@ public class AjouterLocationController implements Initializable {
     public Boolean isAjouter = true;
 
     @FXML
-    public TextField dateDebut;
+    public DatePicker dateDebut;
 
     @FXML
-    public TextField dateFin;
+    public DatePicker dateFin;
 
     @FXML
     public TextField commentaire;
@@ -69,7 +70,8 @@ public class AjouterLocationController implements Initializable {
         try {
             if (isAjouter) {
                 Bien bien = new Bien();
-                Location location = new Location(dateDebut.getText(), dateFin.getText(), commentaire.getText(), bien.getBienById(idBien)); 
+                String dateDebutString = dateDebut.getValue().toString();
+                Location location = new Location(dateDebutString, commentaire.getText(), bien.getBienById(idBien)); 
             } else {
                 Location location = new Location();
                 Utilisateur locataire = new Utilisateur();
@@ -79,7 +81,9 @@ public class AjouterLocationController implements Initializable {
                     locataire = null;
                 }
                 Bien bien = locationToModify.getBien();
-                location.updateAll(locationToModify.getId(), dateDebut.getText(), dateFin.getText(), commentaire.getText(), locataire, bien.getBienById(idBien));
+                String dateDebutString = dateDebut.getValue().toString();
+                String dateFinString = dateFin.getValue().toString();
+                location.updateAll(locationToModify.getId(), dateDebutString, dateFinString, commentaire.getText(), locataire, bien.getBienById(idBien));
             }
             root = FXMLLoader.load(getClass().getResource("../Location/Locations.fxml"));
             stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -94,8 +98,8 @@ public class AjouterLocationController implements Initializable {
     public void setData(Location location) {
         locationToModify = location;
         isAjouter = false;
-        dateDebut.setText(location.getDateDebut());
-        dateFin.setText(location.getDateFin());
+        dateDebut.setValue(dateDebut.getConverter().fromString(location.getDateDebut()));
+        dateFin.setValue(dateFin.getConverter().fromString(location.getDateFin()));
         commentaire.setText(location.getCommentaire());
         menuButton.setText(location.getBien().getNom());
         idBien = location.getBien().getId();

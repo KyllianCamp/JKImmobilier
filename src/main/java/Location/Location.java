@@ -39,9 +39,8 @@ public class Location extends Persist{
     public Location() {
     }
 
-    public Location(String dateDebut, String dateFin, String commentaire, Bien bien) {
+    public Location(String dateDebut,String commentaire, Bien bien) {
         this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
         this.commentaire = commentaire;
         this.locataire = null;
         this.bien = bien;

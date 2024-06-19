@@ -1,11 +1,13 @@
 package View.AjouterPreavis;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import Component.Header.HeaderController;
 import Location.Bien;
 import Location.Location;
 import Location.Preavis;
@@ -18,10 +20,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 
 public class AjouterPreavisController implements Initializable {
 
@@ -39,10 +44,10 @@ public class AjouterPreavisController implements Initializable {
     private Preavis preavisToModify;
 
     @FXML
-    public Boolean isAjouter = true;
+    private DatePicker dateFin;
 
     @FXML
-    public TextField dateFin;
+    public Boolean isAjouter = true;
 
     @FXML
     public TextField motif;
@@ -51,6 +56,9 @@ public class AjouterPreavisController implements Initializable {
     public MenuButton menuButton;
 
     private int idLoc;
+
+    @FXML
+    public VBox layout;
 
     @FXML
     public void goToLocation(ActionEvent event) {
@@ -68,7 +76,7 @@ public class AjouterPreavisController implements Initializable {
     public void setData(Preavis preavis) {
         preavisToModify = preavis;
         isAjouter = false;
-        dateFin.setText(preavis.getDateDepart());
+        dateFin.setValue(LocalDate.parse(preavis.getDateDepart()));
         motif.setText(preavis.getMotif());
     }
 
@@ -82,7 +90,11 @@ public class AjouterPreavisController implements Initializable {
             if (isAjouter) {
                 String dateDebut = LocalDate.now().toString();
                 Location location = new Location();
-                Preavis preavis = new Preavis(dateDebut, dateFin.getText(), motif.getText(), location.getLocationById(idLoc));
+                String dateFinString=" ";
+                if(dateFin.getValue() != null) {
+                    dateFinString = dateFin.getValue().toString();
+                }
+                Preavis preavis = new Preavis(dateDebut, dateFinString , motif.getText(), location.getLocationById(idLoc));
             } else {
                 Location location = new Location();
                 Utilisateur locataire = new Utilisateur();
@@ -102,25 +114,17 @@ public class AjouterPreavisController implements Initializable {
         }
     }
 
-
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {   
-            biens = jdbcDataAccess.getBienWithoutLocation();
-        } catch (SQLException e) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Component/Header/Header.fxml"));
+        try {
+            Parent component = loader.load();
+            HeaderController controller = loader.getController();
+            layout.getChildren().add(0, component);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        for (Bien bien : biens) {
-            MenuItem menuItem = new MenuItem(bien.getNom());
-            menuItem.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    menuButton.setText(bien.getNom());
-                    idBien = bien.getId();
-                }
-            });
-            menuButton.getItems().add(menuItem);
-        }
     }
+
 }
