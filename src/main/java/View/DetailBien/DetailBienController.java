@@ -80,10 +80,11 @@ public class DetailBienController implements Initializable{
         contactProprio.setText(bien.getProprietaire().getMail());
         telProprio.setText(bien.getProprietaire().getTelephone());
 
+        
         for (CaracteristiqueBien caract : bien.getCaracteristiqueBiens()) {
-            Label label = new Label(caract.getCaracteristique().getNom() + ",");
-            label.setFont(new javafx.scene.text.Font("Arial", 20));
-            caracteristiques.getChildren().add(label);
+                Label label = new Label(caract.getCaracteristique().getNom() + ",");
+                label.setFont(new javafx.scene.text.Font("Arial", 20));
+                caracteristiques.getChildren().add(label);
         }
 
         for (Location location : bien.getLocations()) {
