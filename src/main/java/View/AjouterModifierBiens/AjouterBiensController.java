@@ -224,12 +224,17 @@ public class AjouterBiensController implements Initializable{
     @FXML
     public void addingCaracteristique(ActionEvent event) {
         Caracteristique Caracteristique = new Caracteristique(newCaracteristique.getText());
+        newCaracteristique.clear();
         listCaracteristiques.getChildren().clear();
         try {
             caracteristiques = jdbcDataAccess.getCaracteristiques();
             for (Caracteristique caracteristique : caracteristiques) {
                 Button button = new Button(caracteristique.getNom());
-                button.setStyle("-fx-background-color: lightgrey");
+                if (idCaracteristiques.contains(caracteristique.getId())) {
+                    button.setStyle("-fx-background-color: rgba(151, 71, 255, 1)");
+                } else {
+                    button.setStyle("-fx-background-color: lightgrey");
+                }
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {

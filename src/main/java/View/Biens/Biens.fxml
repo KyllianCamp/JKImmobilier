@@ -14,10 +14,10 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="456.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
       <children>
-        <Button mnemonicParsing="false" onAction="#goToAjouterBiens" text="Ajouter un nouveau bien" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" id="button"/>
+        <Button mnemonicParsing="false" onAction="#goToAjouterBiens" text="Ajouter un nouveau bien" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="15.0" id="button"/>
         <TextField layoutX="14.0" layoutY="15.0" promptText="Rechercher" fx:id="textField"/>
         <Button layoutY="15.0" text="🔍" AnchorPane.topAnchor="14.0" AnchorPane.leftAnchor="180.0" onAction="#filter" />
-        <HBox fx:id="dynamicContainer" id="dynamicContainer" spacing="10.0" AnchorPane.topAnchor="60.0" AnchorPane.leftAnchor="15.0"/>
+        <VBox fx:id="dynamicContainer" id="dynamicContainer" spacing="10.0" AnchorPane.topAnchor="60.0" AnchorPane.leftAnchor="15.0"/>
       </children>
     </AnchorPane>
   </children>

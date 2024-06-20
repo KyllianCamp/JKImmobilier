@@ -40,7 +40,7 @@ public class Controller implements Initializable{
     private TextField textField;
 
     @FXML
-    private HBox dynamicContainer;
+    private VBox dynamicContainer;
 
     @FXML
     private VBox layout;
@@ -62,7 +62,16 @@ public class Controller implements Initializable{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        int i = 0;
         for (Bien bien : biens) {
+            HBox hbox;;
+            if (i % 5 == 0 ) {
+                hbox = new HBox();
+                hbox.setSpacing(10);
+                dynamicContainer.getChildren().add(hbox);
+            } else {
+                hbox = (HBox) dynamicContainer.getChildren().get(dynamicContainer.getChildren().size()-1);
+            }
             loader = new FXMLLoader(getClass().getResource("../../Component/CadreBien/CadreBien.fxml"));
             Bien newBien = bien.getBienById(bien.getId());
             try {
@@ -70,10 +79,11 @@ public class Controller implements Initializable{
                 BiensController controller = loader.getController();
                 controller.setData(newBien);
                 component.getStylesheets().add(getClass().getResource("../../Component/CadreBien/styles.css").toExternalForm());
-                dynamicContainer.getChildren().add(component);
+                hbox.getChildren().add(component);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            i++;
         }
     }
 
