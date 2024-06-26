@@ -24,7 +24,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("View/Biens/Biens.fxml"));
         root.getStylesheets().add(getClass().getResource("View/Biens/styles.css").toExternalForm());
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("JKImmobilier");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
